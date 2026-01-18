@@ -1,0 +1,12 @@
+{
+  "repoType": "workspace",
+  "workspaceName": "qinolabs",
+  "description": "Multi-repo workspace for qino ecosystem development",
+
+  "repos": {
+    "implementation": "./qinolabs-repo",
+    "concepts": "./concepts-repo",
+    "research": "./qino-research",
+    "tooling": "./qino-claude"
+  }
+}

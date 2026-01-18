@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "workspaceType": "qino-ecosystem",
+  "created": "2025-01-18",
+  "repos": [
+    {
+      "id": "qinolabs-repo",
+      "type": "implementation",
+      "path": "qinolabs-repo",
+      "purpose": "Main monorepo with all apps",
+      "status": "active",
+      "contains": ["apps", "packages", "implementations"]
+    },
+    {
+      "id": "qino-claude",
+      "type": "tooling",
+      "path": "qino-claude",
+      "purpose": "Claude Code plugins and agents",
+      "status": "active",
+      "contains": ["plugins", "skills", "agents", "commands"]
+    },
+    {
+      "id": "concepts-repo",
+      "type": "concepts",
+      "path": "concepts-repo",
+      "purpose": "Concept exploration and vision",
+      "status": "active",
+      "contains": ["concepts", "ecosystem", "notes"]
+    },
+    {
+      "id": "qino-research",
+      "type": "research",
+      "path": "qino-research",
+      "purpose": "Research and investigations",
+      "status": "active",
+      "contains": ["inquiries", "qualities", "arcs"]
+    },
+    {
+      "id": "qino-lingo",
+      "type": "archives",
+      "path": "qino-lingo",
+      "purpose": "Conversation archives and MCP server",
+      "status": "active",
+      "contains": ["conversations", "mcp-server"]
+    },
+    {
+      "id": "external-apps",
+      "type": "implementation",
+      "path": "external-apps",
+      "purpose": "Client projects (external apps)",
+      "status": "active",
+      "contains": ["client apps"]
+    },
+    {
+      "id": "external-concepts",
+      "type": "concepts",
+      "path": "external-concepts",
+      "purpose": "Client project concepts",
+      "status": "active",
+      "contains": ["client concept docs"]
+    },
+    {
+      "id": "qinolabs-legal",
+      "type": "legal",
+      "path": "qinolabs-legal",
+      "purpose": "Legal documents and compliance",
+      "status": "active",
+      "contains": ["legal docs"]
+    }
+  ]
+}

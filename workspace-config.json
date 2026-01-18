@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "workspaceType": "qino-ecosystem",
+
+  "repos": {
+    "implementation": "./qinolabs-repo",
+    "concepts": "./concepts-repo",
+    "research": "./qino-research",
+    "tooling": "./qino-claude",
+    "archives": "./qino-lingo",
+    "legal": "./qinolabs-legal"
+  },
+
+  "conceptLinks": {
+    "qino-world": {
+      "concept": "concepts-repo/concepts/qino-world",
+      "implementation": "qinolabs-repo/implementations/qino-world"
+    },
+    "qino-drops": {
+      "concept": "concepts-repo/concepts/qino-drops",
+      "implementation": "qinolabs-repo/implementations/qino-drops"
+    },
+    "qino-chronicles": {
+      "concept": "concepts-repo/concepts/qino-chronicles",
+      "implementation": "qinolabs-repo/implementations/qino-chronicles"
+    },
+    "qino-journey": {
+      "concept": "concepts-repo/ecosystem/qino-journey",
+      "implementation": "qinolabs-repo/implementations/qino-journey"
+    },
+    "qino-arc": {
+      "concept": "concepts-repo/concepts/qino-arc",
+      "implementation": "qinolabs-repo/implementations/qino-arc"
+    },
+    "qino-frame": {
+      "concept": "concepts-repo/concepts/qino-frame",
+      "implementation": "qinolabs-repo/implementations/qino-frame"
+    },
+    "qino-walk": {
+      "concept": "concepts-repo/concepts/qino-walk",
+      "implementation": "qinolabs-repo/implementations/qino-walk"
+    },
+    "lens-lab": {
+      "concept": "concepts-repo/concepts/lens-lab",
+      "implementation": "qinolabs-repo/implementations/lens-lab"
+    }
+  },
+
+  "mcpServers": {
+    "qino-lingo": {
+      "path": "qino-lingo/mcp-server",
+      "command": "python",
+      "args": ["server.py"]
+    }
+  }
+}
