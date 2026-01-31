@@ -39,7 +39,7 @@ cd qino-claude && cat CLAUDE.md
 | App | Frontend Port | Backend Port | Purpose |
 |-----|---------------|--------------|---------|
 | qino-world | 3007 | 4007 | World exploration interface |
-| qino-arc | 3010 | 4012 | Sky view — manifestations across all modalities |
+| qino-arc | 3010 | 4012 | Cross-modality manifestation browser |
 | qino-journey | - | 5003 | Ecosystem-level encounter tracking |
 | qino-frame | 3003 | 4003 | Design tool |
 | qino-drops | 3001 | 4001 | Procedural idle canvas — figures emit drops onto a multi-track visualization |
@@ -72,6 +72,16 @@ qino-drops is a **real-time simulation** where the user's personal figures (abst
 - **Shared contracts**: `qinolabs-repo/packages/contracts/`
 
 **Note**: The shared UI library (`packages/ui/`) is being phased out. Use `packages/ui-core/` for basic universal components. When working on UI, prefer ui-core for new components and migrate existing ui imports when touching that code.
+
+## Navigators
+
+**Location**: `qinolabs-repo/navigators/`
+
+Living orientation documents for cross-cutting possibility spaces being actively explored or built. Each navigator maps terrain with meaning, carries a reading order, tracks open questions, and accumulates a session log across sessions.
+
+**When to use**: "use the active navigator", "navigate [territory]", "map this concept"
+
+**Not plans** (they don't prescribe tasks). **Not arcs** (arcs are live containers that trace inquiry as it moves; navigators map terrain for building). Different temporal quality — arcs follow emergence, navigators orient construction.
 
 ## Implementation Notes & Iterations
 
@@ -141,11 +151,21 @@ This document contains the full vocabulary: Figure, Manifestation, Substrate, En
 
 **Key insight**: Manifestations are local presences; figures are patterns recognized across them.
 
+## Design Principles
+
+**Source of truth**: `concepts-repo/ecosystem/ecosystem-design-principles.md`
+
+Meta-principles for qino system architecture, discovered through building. Includes "Trust the Ecosystem" and "Boundaries of Meaning."
+
+**When to consult**: Before designing complex local solutions, or when integrating across modalities/layers.
+
 ## Qino Skill
 
 Use the **qino skill** for work in this ecosystem:
 
 **Dev work** — "what's next for [app]", "read the implementation notes", "what's the iteration status", "build [feature]"
+
+**Navigation** — "use the active navigator", "navigate [territory]", "map this concept", "update the navigator"
 
 **Concept work** — "explore [concept]", "where am I", "capture this thought", "test through ecology"
 
