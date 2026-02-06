@@ -10,18 +10,24 @@ This is a multi-repo workspace. Navigate to the appropriate repo based on the ta
 |------|---------|-------------|
 | `qinolabs-repo/` | Main monorepo with all apps | Building features, fixing bugs, app development |
 | `qino-claude/` | Claude Code tools and plugins | Creating/updating Claude commands, agents, plugins |
-| `concepts-repo/` | Prototypes and experiments | Exploring ideas before main integration |
+| `qino-concepts/` | **Main concepts repository** | Concept exploration, app visions, ecosystem design |
 | `qino-research/` | Research and documentation | Research tasks, technical writing |
 | `qino-lingo/` | Conversation archives | Reference only |
 | `qinolabs-legal/` | Legal documents | Legal/compliance work |
 | `external-apps/` | External client apps | Standalone projects outside qinolabs ecosystem |
 | `external-concepts/` | External project concepts | Design docs for external client work |
+| `concepts-repo/` | **Deprecated** — being phased out | Legacy concepts, migrate to qino-concepts |
 
 ## Quick Navigation
 
 **App development** (qino-world, qino-journey, etc.):
 ```
 cd qinolabs-repo && cat CLAUDE.md
+```
+
+**Concept exploration** (app visions, ecosystem design):
+```
+cd qino-concepts && cat graph.json
 ```
 
 **Technical architecture** (cross-app patterns):
@@ -89,11 +95,12 @@ Living orientation documents for cross-cutting possibility spaces being actively
 
 This is where all iteration plans and implementation documentation live — **regardless of which repo you're working in** (concepts-repo, qino-research, qino-claude, etc.).
 
-**Structure per app**:
+**Structure per app** (follows qino-protocol):
 ```
 implementations/{app}/
-  implementation.md              # Technical context, stack, boundaries, flags
-  iterations/
+  node.json                      # Identity (title, type, status)
+  story.md                       # Technical context, stack, boundaries, flags
+  content/
     01-foundation.md             # First iteration
     02-feature-name.md           # Subsequent iterations
     ...
@@ -102,9 +109,9 @@ implementations/{app}/
 **Naming convention**: `{NN}-{descriptive-name}.md` (e.g., `01-metabolic-foundation.md`, `02-interaction-resonance.md`)
 
 **When to read**:
-- "What's the current iteration?" → `implementations/{app}/iterations/`
-- "What are the technical boundaries?" → `implementations/{app}/implementation.md`
-- "What's the essence/vision?" → `concepts-repo/concepts/{concept}/concept.md`
+- "What's the current iteration?" → `implementations/{app}/content/`
+- "What are the technical boundaries?" → `implementations/{app}/story.md`
+- "What's the essence/vision?" → `qino-concepts/nodes/{concept}/story.md`
 
 **Active apps with implementations**: qino-drops, qino-world, qino-chronicles, qino-journey, qino-frame, qino-walk, qino-label, lens-lab, qino-infra
 
@@ -131,7 +138,7 @@ Settled technical architecture and cross-app patterns that serve as the **starti
 **Relationship to other docs**:
 - `implementations/{app}/` - App-specific implementation notes
 - `implementations/docs/` - Cross-app architecture and patterns
-- `concepts-repo/` - Concept exploration and vision
+- `qino-concepts/` - Concept exploration and vision (qino-protocol structure)
 - `qino-research/` - Research and investigations
 
 ## Development Commands
@@ -145,7 +152,7 @@ From `qinolabs-repo/`:
 
 **CRITICAL**: Use qino ecosystem terminology consistently.
 
-**Source of truth**: `concepts-repo/ecosystem/qino-domain-language.md`
+**Source of truth**: `qino-concepts/ecosystem/qino-domain-language/story.md`
 
 This document contains the full vocabulary: Figure, Manifestation, Substrate, Encounter, Lens, Scope, Contour, Current, Voicing, Facet, Crossing, Awakening, Lineage, Modality, Journey — and the narrative that shows how they relate.
 
@@ -153,7 +160,7 @@ This document contains the full vocabulary: Figure, Manifestation, Substrate, En
 
 ## Design Principles
 
-**Source of truth**: `concepts-repo/ecosystem/ecosystem-design-principles.md`
+**Source of truth**: `qino-concepts/ecosystem/ecosystem-design-principles/story.md`
 
 Meta-principles for qino system architecture, discovered through building. Includes "Trust the Ecosystem" and "Boundaries of Meaning."
 
