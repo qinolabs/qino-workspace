@@ -16,5 +16,16 @@
     "implementation": { "path": "qinolabs-repo" },
     "research": { "path": "qino-research" },
     "tooling": { "path": "qino-claude" }
+  },
+
+  "protocol": "qino",
+  "types": {
+    "navigator": { "color": "emerald" },
+    "session":   { "color": "amber" },
+    "finding":   { "color": "teal" },
+    "view":      { "color": "sky" }
+  },
+  "statuses": {
+    "composted": { "treatment": "faded" }
   }
 }

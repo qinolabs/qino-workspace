@@ -1,0 +1,33 @@
+{
+  "id": "qinolabs",
+  "title": "qinolabs",
+  "nodes": [
+    {
+      "id": "emergence-experiments",
+      "dir": "emergence-experiments",
+      "title": "Emergence Experiments",
+      "type": "navigator",
+      "status": "active"
+    }
+  ],
+  "edges": [
+    {
+      "source": "emergence-experiments",
+      "target": "emergence-lab",
+      "type": "sparked-by",
+      "context": "supersedes the emergence-lab navigator; carries the domain forward in new form"
+    },
+    {
+      "source": "emergence-experiments",
+      "target": "qino-lab",
+      "type": "references",
+      "context": "qino-lab protocol as the experiment workspace medium"
+    },
+    {
+      "source": "emergence-experiments",
+      "target": "tech-qino-lens",
+      "type": "references",
+      "context": "readiness lenses extend the lens-slot architecture with an Emergence Layer"
+    }
+  ]
+}
