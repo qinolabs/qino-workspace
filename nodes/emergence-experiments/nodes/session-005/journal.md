@@ -1,0 +1,1 @@
+i feel something is emerging through the way lenses themselves are related to each other. the begin to remind me of a grammar that can possibly express an answer to a question formed by user experience, immanence of the ui, coherence of the world, vitality of the game experience. a graph of lenses: it feels like a multi-dimensional shaping tool for a multi-dimensional art work
