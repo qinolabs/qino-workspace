@@ -1,0 +1,5 @@
+Authoring the closure lens — the inflation guard. When has tension been lived with enough to release? Not exhausted, not solved, but fulfilled. New scenarios can't emerge while current tension is still live.
+
+**Key question**: Is closure intrinsic or relational? It was assumed to need temporal context (sequence of how tension was explored over time). But the substrate already contains `currentTension` + all `relationalInquiries`. The lens may be able to assess closure from the current state alone — how thoroughly the inquiries address the tension, from how many angles, at what depth.
+
+**Narrative sensitivity**: Closure requires something the other lenses don't — a judgment about narrative arc quality. A tension can be explored at depth by many voices and still feel unresolved if each inquiry opens more questions. Conversely, a few precise inquiries might convey fulfillment. The lens needs to read for *quality of completion*, not just coverage metrics.

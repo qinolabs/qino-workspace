@@ -1,0 +1,5 @@
+Authoring the coherence lens — the first lens requiring context beyond the immediate scenario substrate. Convergence asks "do threads point together?" Saturation asks "is there enough?" Fertility asks "could connections form?" Coherence asks: **does what's emerging fit the world it's emerging into?**
+
+This is the architectural frontier. The current pipeline passes `{{substrate}}` and `{{scenarioContext}}` to the LLM. Coherence needs a third input — world fabric: existing scenarios, established tone, manifestation relationships across the world. The question isn't just what the lens attends to, but what the pipeline needs to provide.
+
+**Challenge**: The fixture scenarios are self-contained — they have no "world" around them. Can coherence be tested against fixtures, or does it require a multi-scenario fixture design?

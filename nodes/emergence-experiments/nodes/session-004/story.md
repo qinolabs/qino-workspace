@@ -1,0 +1,3 @@
+Running the coherence lens against all three Tidal Workshop scenarios. Unlike the ad-hoc Convergence Basin assessment (session-002), this uses the proper world fixture with designed inter-scenario threads — tidal minerals, the vanished mentor, and material flows that the coherence lens should be able to detect.
+
+**The test**: Can coherence distinguish between tonal-alignment-only (Silt Garden), emergence-that-articulates-the-world (Glassmaker's Reach), and surface-scatter-masking-deep-structure (Listening Wall)?

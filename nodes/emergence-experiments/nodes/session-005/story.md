@@ -1,0 +1,5 @@
+Session 4's tension about the 0.92 coherence score opens into something deeper than fixture calibration. Hale's inquiry — "the mineral signature appears in three places: this sandbar, the silt banks downstream, and the old sea wall foundations" — is world-building machinery exposed as dialogue. No character in a real world would have that kind of cross-scenario awareness.
+
+The issue isn't just that the score is inflated. It's that the fixture violates a storytelling principle that the entire emergence system must respect: **connections are discovered, not announced.** Characters have local knowledge. They speak from experience. The coherence lens should detect implied connections the way a careful reader detects themes — through attention to parallels, not through explicit cross-references.
+
+This session revises the fixture, the coherence lens attention focus, and the design principle underlying both.

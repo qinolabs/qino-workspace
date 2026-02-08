@@ -72,6 +72,33 @@ The observation surface has been migrated from emergence-lab into lens-lab. Here
 
 Location: `lens-lab-backend/src/fixtures/emergence-scenarios.ts`
 
+### World Fixture (The Tidal Workshop)
+
+A world-level fixture for testing relational lenses (coherence, proximity). Three scenarios connected by material flows along a river-to-sea axis.
+
+| Scenario | Stage | Manifestations | Inquiries | Inter-Scenario Threads |
+|----------|-------|:-:|:-:|---|
+| The Silt Garden | early-accumulation | 2 | 1 | Silt carries mineral waste from upstream, root patterns respond to tidal minerals |
+| The Glassmaker's Reach | converging | 3 | 4 | Sand/mineral waste flows downstream, vanished mentor may be wall builder |
+| The Listening Wall | saturated-scattered | 4 | 5 | Mineral veins match tidal minerals, wall builder used upriver traditions |
+
+World theme: transformation through sustained contact (river meets sea). Connected by: tidal minerals (geological source), vanished mentor/wall builder (person thread), acoustic properties (sound carried by water).
+
+**Design principle (Session 5)**: Characters have local knowledge only. Hale doesn't name all three locations — he describes a stone that hummed downstream. The coherence lens infers the connection; the characters don't announce it.
+
+Location: `lens-lab-backend/src/fixtures/emergence-worlds.ts`
+
+### New Types (Sessions 3, 7)
+
+| Type | Location | Purpose |
+|------|----------|---------|
+| `WorldContext` | `lens-lab-backend/src/types.ts` | Third template variable for relational lenses |
+| `EntityProfile` | `lens-lab-backend/src/types.ts` | Entity data assembled from scenario substrate for proximity |
+| `ProximityContext` | `lens-lab-backend/src/types.ts` | Two entity profiles + world context — proximity lens input |
+| `EmergenceWorld` | `lens-lab-backend/src/fixtures/emergence-worlds.ts` | World fixture type |
+
+Helpers: `getWorldContext()`, `formatWorldContext()`, `getEntityPairContext()`, `formatEntityProfile()`, `buildEntityProfile()` — all in `emergence-worlds.ts`, typecheck clean.
+
 ### What Has NOT Been Verified
 
 The migration is code-complete but the end-to-end loop has not been confirmed running:
@@ -98,39 +125,118 @@ Full plan: `qinolabs-repo/implementations/lens-lab/content/21-emergence-integrat
 
 ## III. The Readiness Lenses (Emergence Layer)
 
-The Emergence Layer introduces 5 readiness lens slots — a new layer alongside Ecosystem, Context, and Weather in the lens-slot taxonomy. Each slot follows the same anatomy: input (what enters) → lens (how it's shaped) → output (what emerges) → effect (what it enables).
+The Emergence Layer introduces readiness lens slots — a new layer alongside Ecosystem, Context, and Weather in the lens-slot taxonomy. Each slot follows the same anatomy: input (what enters) → lens (how it's shaped) → output (what emerges) → effect (what it enables).
 
-| Slot | Lens | Input | What It Reveals | Status |
-|------|------|-------|-----------------|--------|
-| **Readiness** | Convergence | Cross-source substrate | When multiple sources point at the same territory | Seeded (v1) |
-| **Density** | Saturation | Any-scope accumulation | When enough has accumulated for next step | Seeded (v1) |
-| **Integrity** | Coherence | Potential emergence + world history | Whether emergence fits established fabric | To author |
-| **Closure** | Closure | Tension + conversation history | When tension has been sufficiently explored | To author |
-| **Relation** | Proximity | Entity-pair shared substrate | When entities support deepened connection | To author |
+| Slot | Lens | Type | Input | What It Reveals | Status |
+|------|------|------|-------|-----------------|--------|
+| **Readiness** | Convergence | Intrinsic | `ScenarioSubstrate` | When multiple sources point at the same territory | Calibrated (v1), in seeder |
+| **Density** | Saturation | Intrinsic | `ScenarioSubstrate` | When enough has accumulated for next step | Calibrated (v1), in seeder |
+| **Potential** | Fertility | Intrinsic | `ScenarioSubstrate` | Whether latent connections exist that could become convergence | Calibrated (v1), drafted |
+| **Closure** | Closure | Intrinsic | `ScenarioSubstrate` | When tension has been sufficiently explored — the inflation guard | Calibrated (v1), drafted |
+| **Integrity** | Coherence | Relational | `ScenarioSubstrate` + `WorldContext` | Whether emergence fits established fabric | Calibrated (v2), drafted |
+| **Relation** | Proximity | Relational | `ProximityContext` (entity-pair) | When entities support deepened connection — crossing territory | Calibrated (v1), drafted |
 
-### Seeded Lenses (From emergence-lab, migrated to lens-lab)
+**Key classification**: 4 intrinsic lenses operate on scenario substrate alone. 2 relational lenses need context beyond the scenario. Proximity is architecturally unique — it operates on entity-pair substrate rather than scenario-level, requiring a new input shape (`EntityProfile` + `EntityProfile` + `WorldContext`).
 
-**Convergence** (v1):
+### Calibration Table — Intrinsic Lenses (Standalone Fixtures)
+
+Manual assessment of all fixtures through the 4 intrinsic lenses. These values serve as ground truth for evaluating the LLM pipeline.
+
+| Fixture | Stage | Convergence | Saturation | Fertility | Closure |
+|---------|-------|:-----------:|:----------:|:---------:|:-------:|
+| The Empty Room | cold | 0.03 | 0.04 | 0.06 | 0.00 |
+| The Gathering Threads | early-accumulation | 0.12 | 0.14 | 0.58 | 0.08 |
+| The Same Shore | converging | 0.72 | 0.48 | 0.38 | 0.48 |
+| The Full Market | saturated-scattered | 0.13 | 0.73 | 0.45 | 0.12 |
+| The Threshold Garden | near-ready | 0.88 | 0.79 | 0.22 | 0.68 |
+
+**Key finding**: Convergence and saturation are orthogonal — "The Same Shore" (0.72/0.48) and "The Full Market" (0.13/0.73) have inverted profiles. Direction without mass vs mass without direction. Near-ready requires both.
+
+**Lifecycle interpretation**: Fertility behaves as potential energy. It peaks at early-accumulation (0.58) when threads are planted but unexplored, and decreases as inquiry converts latent connections into actual convergence/saturation. The four intrinsic lenses together reveal where a scenario is in its lifecycle, not just a static readiness score.
+
+**Closure as inflation guard**: The Full Market (sat 0.73, closure 0.12) demonstrates the core pattern — abundant accumulation with almost nothing processed. Without closure, saturation is noise. Closure converts accumulation into readiness.
+
+### Calibration Table — Coherence (Tidal Workshop)
+
+Coherence is world-relative — the same scenario scores differently in different worlds. No universal calibration table is possible. Values below are for The Tidal Workshop.
+
+| Scenario | Stage | Coherence (v2) |
+|----------|-------|:--------------:|
+| Silt Garden | early | 0.75 |
+| Glassmaker's Reach | converging | 0.79 |
+| Listening Wall | saturated | 0.58 |
+
+Coherence v2 uses inference-over-matching attention: characters have local knowledge only, connections are inferred from circumstantial evidence. V1 scored Glassmaker's Reach at 0.92 (inflated by explicit cross-references); v2 corrects to 0.79.
+
+**Latent coherence**: The Listening Wall (0.58) is structurally aligned with the world but experientially invisible — a distinct state from low coherence (contradiction). The wall doesn't contradict; it conceals.
+
+### Calibration Table — Proximity (Tidal Workshop Entity Pairs)
+
+Proximity operates on entity pairs, not scenarios. Values below are for pairs from The Tidal Workshop.
+
+| Entity Pair | Scenarios | Proximity |
+|-------------|-----------|:---------:|
+| Seren ↔ Hale | Same (Glassmaker's Reach) | 0.85 |
+| Hale ↔ Cael | Different (GR ↔ LW) | 0.78 |
+| Moth ↔ Petra | Same (Listening Wall) | 0.62 |
+| Ondra ↔ Seren | Different (SG ↔ GR) | 0.45 |
+| Petra ↔ Seren | Different (LW ↔ GR) | 0.38 |
+| Moth ↔ Ondra | Different (LW ↔ SG) | 0.15 |
+
+**Knowledge complementarity** is the strongest driver — when one entity holds something the other needs. Temperamental resonance and co-presence contribute but are insufficient alone.
+
+**Latent proximity**: Hale ↔ Cael (0.78) are structurally close but experientially invisible — the river carries Hale's frequencies to Cael's wall, but neither knows the other exists. Both relational lenses exhibit latent states.
+
+### Calibrated Lenses
+
+**Convergence** (v1) — calibrated:
 - Attention focus: repeated themes across perspectives, shared entity mentions, aligned tension directions, complementary narrative threads
 - Prompt template: Substitutes `{{substrate}}` and `{{scenarioContext}}`, asks for structured JSON assessment
 - What it's sensitive to: Multiple independent sources pointing at the same territory
+- Calibration: Correctly discriminates converging (0.72) from saturated-scattered (0.13). Strong at detecting multi-perspective alignment (Yael/Dhar/Tide Keeper in "The Same Shore"). Insensitive at low end (can't distinguish cold from early).
 
-**Saturation** (v1):
+**Saturation** (v1) — calibrated:
 - Attention focus: unique perspective count, knowledge depth distribution, mention breadth, awakened-to-unawakened ratio
 - Prompt template: Same structure, different attention
 - What it's sensitive to: Density and breadth of accumulated material
+- Calibration: Correctly gives "The Full Market" (0.73) a high score despite no convergence. Counts voices, types, depths. Insensitive at low end (same limitation as convergence).
 
-### Lenses To Author (Informed by running the first 2)
+**Fertility** (v1) — drafted, not yet in seeder:
+- Attention focus: complementary perspectives (origins/personalities suggesting different angles), thematic resonance across mentions (names/types hinting at latent connections), tension openness (invites multiple perspectives), unexpressed potential (voices waiting to speak), spatial affordances (convergence potential in setting)
+- Prompt template: Explicitly instructs assessment of *potential energy*, not actual convergence or accumulation
+- What it's sensitive to: Latent complementarity — connections that could form but haven't yet
+- Calibration: Correctly gives "The Gathering Threads" (0.58) a high score where convergence and saturation both read low (0.12/0.14). Fills the low-end discrimination gap. Decreases as potential converts to actual (near-ready: 0.22).
 
-**Coherence** — Does potential emergence fit the established fabric? Needs to check against world history, existing manifestation relationships, scenario tone. The hardest lens — it requires contextual awareness beyond the immediate substrate.
+**Closure** (v1) — calibrated:
+- Attention focus: fulfillment quality (settling vs opening), breadth and depth of tension engagement, narrative arc sensitivity
+- What it's sensitive to: Whether the scenario's `currentTension` has been explored with enough depth and variety to release
+- Architectural finding: Closure is intrinsic, not relational. The substrate's `currentTension` + `relationalInquiries` provide enough for assessment without world context
+- Calibration: The Full Market (sat 0.73, closure 0.12) is the key case — seven voices talking past each other, tension demonstrated but examined by no one. The Threshold Garden (0.68) shows partial closure: three voices have circled the gap from complementary angles but can't name what's missing
 
-**Closure** — Has tension been sufficiently explored? Not exhausted, but fulfilled. This lens needs to understand narrative arc — when has a question been lived with enough to release? The concept doc notes: the closure lens is the inflation guard. New scenarios can't emerge while current tension is still live.
+**Coherence** (v2) — calibrated:
+- Attention focus: inference-over-matching. Structural resonance, material similarities, temporal coincidences, spatial logic — NOT explicit cross-references
+- Input: `ScenarioSubstrate` + `WorldContext` (the `{{worldContext}}` template variable)
+- What it's sensitive to: Whether emergence fits the world's established fabric — tonal alignment, thematic consistency, productive tension vs contradiction
+- Calibration: Distinguishes pure alignment (Same Shore 0.82), productive tension (Threshold Garden 0.78), and contradiction (Full Market 0.32). World-relative — no universal calibration table
+- **Storytelling integrity principle**: Characters have local knowledge only. The lens is the reader. Connections between scenarios must be inferred from circumstantial evidence, not announced by characters
 
-**Proximity** — Do entities have enough shared substrate to support a deepened connection? This lens operates on entity-pair substrate rather than scenario-level. It reveals when relationships are ready to deepen — crossing territory.
+**Proximity** (v1) — calibrated:
+- Attention focus: material overlap, knowledge complementarity (strongest driver), spatial relationship, thematic resonance, encounter readiness, asymmetry
+- Input: `ProximityContext` — two `EntityProfile` instances + `WorldContext`
+- What it's sensitive to: Relational density between two entities — not physical distance but accumulated shared substrate quality
+- Calibration: Cross-scenario pairs can score higher than same-scenario pairs (Hale↔Cael 0.78 > Moth↔Petra 0.62) because proximity is relational density, not co-presence
+- **Pipeline tension**: Proximity breaks the `assessScenario()` assumption. Needs a parallel `assessEntityPair()` path or a generalized assessment context. Types and helpers committed; pipeline path not yet built
 
 ### The Authoring Practice
 
-Running convergence and saturation against the 5 fixture scenarios first reveals what "good assessment" looks like — signal values that distinguish stages, evidence that's specific rather than generic, gaps that point at real absences. The 3 unwritten lenses should be authored *after* building intuition from the first 2.
+The authoring loop: **run → observe gap → author new lens → calibrate**. Each lens was authored in response to something the previous calibration revealed:
+
+- Fertility: authored because convergence and saturation couldn't distinguish cold from early (low-end insensitivity)
+- Coherence: authored because intrinsic lenses can't assess whether emergence fits the world (required new input shape: `WorldContext`)
+- Closure: settled the architectural question (intrinsic, not relational — substrate carries enough) and revealed the inflation guard pattern
+- Proximity: required the most architecturally distinct input shape (`ProximityContext`) and revealed latent states
+
+All 6 lenses are now drafted and calibrated. None are in the seeder code except convergence and saturation. The LLM pipeline has never been run end-to-end.
 
 **References**:
 - Lens-slot architecture: `qino-concepts/ecosystem/tech-qino-lens/` (sub-graph with slots facet)
@@ -201,30 +307,48 @@ The first expression of accumulate → assess → emerge, implemented and runnin
 
 ## Open Questions
 
-### Readiness Lens Definitions
-- What are the concrete `attentionFocus` and `promptTemplate` for coherence, closure, proximity?
-- Can readiness lenses be composed? ("Convergent AND coherent" as a combined assessment)
+### Resolved
+- ~~What does a "good" assessment look like?~~ → A good assessment discriminates between stages. Evidence references specific names and content.
+- ~~Can readiness lenses be composed?~~ → Lenses compose as a *space* (convergence x saturation x fertility x closure). Each stage occupies a distinct region. Composition is spatial, not boolean.
+- ~~What are the concrete attentionFocus and promptTemplate for coherence, closure, proximity?~~ → All three drafted with full lens designs (see Calibrated Lenses above).
+- ~~Is the original 5-slot taxonomy complete?~~ → 6 slots: fertility fills the Potential slot.
+- ~~Coherence input format?~~ → `{{worldContext}}` template variable, `WorldContext` type.
+- ~~Does closure need sequential context?~~ → No. Closure is intrinsic — `currentTension` + `relationalInquiries` suffice.
+- ~~Should the pipeline support different context shapes?~~ → Yes. Three shapes: scenario substrate (intrinsic), scenario + world (coherence), entity-pair + world (proximity).
+
+### Pipeline Architecture
+- Proximity needs a parallel assessment path (`assessEntityPair()`) or a generalized `AssessmentContext` discriminated union. Types committed, pipeline path not built.
+- 4 drafted lenses (fertility, closure, coherence, proximity) are not yet in the seeder code.
+- The LLM pipeline has never been run end-to-end against the calibration tables.
 - Should lens sensitivity be tunable per-world or per-scenario?
-- Are these the same construct as voicing lenses (same infrastructure, different slot) or do they need their own pipeline?
-- What does a "good" assessment look like? How do we know when a lens is calibrated?
+- Are readiness lenses the same construct as voicing lenses (same infrastructure, different slot) or do they need their own pipeline?
+
+### Lens Interiority (Exploration Thread)
+- **Compositionality**: Lens readings compose into something no individual reading contains. The Full Market's profile (conv 0.13, sat 0.73, fert 0.45, closure 0.12) means "indigestion" — a metabolic state invisible from any single lens. This compositionality is prior to any particular grammar for reading it.
+- **Multiple grammars**: The metabolic grammar (conversion ratio, digestion ratio) is the first grammar discovered but not the only one. Resonance, tension field, and compositional grammars read the same data differently. The choice of grammar is itself a lens operation.
+- **Fractal claim**: The metabolic pattern holds at two scales (scenario-level and world-level). Each scale generates states the other can't name ("converting but not digesting" is visible only at world level). But the fractal hasn't been tested at entity-pair or meta levels.
+- **Relational lenses absent**: Coherence and proximity aren't in any metabolic ratio yet. How do they participate in lens-to-lens composition?
+- **Normative risk**: The metabolic framing risks treating states like "indigestion" as pathology. The Full Market might not be stuck — it might be accumulating toward a phase transition the current lenses can't predict.
+
+### Crossing Connection
+- The proximity lens assesses readiness for crossing. The crossing facet (`concepts-repo/concepts/qino-world/facets/crossing.md`) describes how crossings happen. How does proximity output inform crossing design?
+- The NPC witness pattern (witness shapes arrival through quality of attention) is structurally the same as lensing. Is the witness a lens operation?
+- What crossings does a lens profile *permit*? Can the full 6-lens profile function as a constraint surface for the crossing system?
 
 ### Scenario Lifecycle
 - When is a scenario "done"? Explicit user choice? Lens-detected closure? Both?
 - What's the relationship between scenario completion and new scenario emergence?
-- Can completed scenarios be revisited? Do they continue ticking?
-- How much narrative state should the starter deck carry vs. emerge through play?
+- The **blocked emergence profile** (high convergence + high saturation + low closure) is identified but no fixture represents it.
+- Does the lifecycle interpretation (fertility → convergence/saturation conversion) inform when a scenario has "peaked"?
 
 ### Inflation and Pacing
 - What's the right ratio of "scenarios explored" to "scenarios discovered"?
 - Should discovery rate slow as the world grows?
 - How do we prevent the world from becoming so large it loses coherence?
-- Is there an equivalent of drops' cadence modes for world ticks?
 
-### Tick Specification
-- What's the input to a tick? Full world state? Only recent changes? A summary?
-- How does the LLM maintain coherence across many ticks?
-- Should ticks be deterministic given the same input, or intentionally stochastic?
-- What happens to ticks when the user is mid-session?
+### qino-lab as Experiment Medium
+- Annotation signals (reading, connection, tension, proposal) map structurally to readiness lens operations. Is this structural or coincidental?
+- The reflexive experiment (applying lenses to the workspace graph itself) — deferred until instrument set is richer but now possible with 6 lenses drafted.
 
 ---
 
@@ -234,10 +358,13 @@ For entering this territory:
 
 1. **The concept** → `qino-concepts/concepts/emergence-lab/content/concept.md` — the full vision (still the best orientation)
 2. **The integration plan** → `qinolabs-repo/implementations/lens-lab/content/21-emergence-integration.md` — what was decided about merging
-3. **The fixtures** → `qinolabs-repo/apps/lens-lab-backend/src/fixtures/emergence-scenarios.ts` — the 5 test scenarios (see the substrate)
-4. **The seeded lenses** → `qinolabs-repo/apps/lens-lab-backend/src/services/readiness-lens-seeder.ts` — convergence + saturation definitions
-5. **The assessment service** → `qinolabs-repo/apps/lens-lab-backend/src/services/assessment-service.ts` — how lenses are applied
-6. **The old navigator** → `qinolabs-repo/navigators/emergence-lab.md` — sessions 1-3, terrain mapping, resolved questions
+3. **The standalone fixtures** → `lens-lab-backend/src/fixtures/emergence-scenarios.ts` — 5 test scenarios for intrinsic lenses
+4. **The world fixture** → `lens-lab-backend/src/fixtures/emergence-worlds.ts` — The Tidal Workshop for relational lenses
+5. **The types** → `lens-lab-backend/src/types.ts` — `WorldContext`, `EntityProfile`, `ProximityContext`
+6. **The seeded lenses** → `lens-lab-backend/src/services/readiness-lens-seeder.ts` — convergence + saturation (only 2 of 6 in code)
+7. **The assessment service** → `lens-lab-backend/src/services/assessment-service.ts` — how lenses are applied
+8. **The crossing facet** → `concepts-repo/concepts/qino-world/facets/crossing.md` — how proximity becomes encounter
+9. **The experiment log** → this sub-graph's nodes and annotations (sessions 1-7 + lens-interiority exploration)
 
 ---
 
@@ -263,3 +390,81 @@ For entering this territory:
 - Run convergence and saturation against fixture scenarios to build intuition
 - Author coherence, closure, proximity lenses informed by first experiments
 - Discover what role the qino-lab protocol plays in this practice
+
+### 2026-02-07 — Session 2: Manual Lens Calibration + Fertility Discovery
+
+**What happened**: Ran convergence and saturation lenses manually against all 5 fixture scenarios, producing 10 structured assessments. Built a calibration table as ground truth. Discovered low-end insensitivity (cold and early-accumulation both in the low/low quadrant). Authored a **fertility** lens to fill the gap, ran it against all 5 fixtures, confirmed it discriminates early-accumulation (0.58) from cold (0.06).
+
+**Key recognitions**:
+- Convergence and saturation are orthogonal — they create a 2D readiness space where each stage occupies a distinct quadrant
+- Fertility behaves as potential energy — peaks when threads are planted but unexplored, decreases as inquiry converts potential to actual convergence/saturation
+- The three lenses together reveal lifecycle position, not just static readiness
+- Annotation signals in qino-lab map structurally to readiness lens operations (connection = micro-convergence, tension = micro-gap-detection)
+- The Full Market's hidden fertility (0.45) reveals the Night Market as a cross-domain convergence seed — a lens that detects what *to do next*, not just where things stand
+
+**What was produced**:
+- Session node in emergence-experiments sub-graph (session-001)
+- 5 annotations: 2 readings (calibration table, fertility results), 1 connection (annotation signals ↔ readiness lenses), 1 tension (low-end insensitivity), 1 proposal (three next moves)
+- Calibration table (ground truth for LLM pipeline evaluation)
+- Fertility lens definition (v1 draft, not yet in seeder code)
+- Updated terrain document (this update)
+
+**What remains alive**:
+- Author coherence lens — the first lens requiring context beyond scenario substrate
+- Add fertility lens to the seeder code
+- Run the LLM pipeline against calibration table to verify infrastructure
+- Author closure and proximity lenses
+- The reflexive experiment (applying lenses to the workspace graph itself) — deferred until instrument set is richer
+
+### 2026-02-07 — Session 3: World Fixture Design
+
+**What happened**: Created "The Tidal Workshop" — a world-level fixture with 3 scenarios connected by material flows along a river-to-sea axis. `WorldContext` type, `getWorldContext()` helper, and `formatWorldContext()` prompt formatter typecheck clean.
+
+**What was produced**: `emergence-worlds.ts` with full world fixture, `WorldContext` type in `types.ts`, helper functions for world context extraction and formatting.
+
+**Key recognition**: Relational lenses need world fabric, inter-scenario threads, and history. The Listening Wall is the most interesting test case — surface scatter concealing deep structural coherence.
+
+### 2026-02-07 — Session 4: Coherence x Tidal Workshop
+
+**What happened**: Ran coherence against all 3 world fixture scenarios. Coherence v1 discriminates well: tonal alignment (0.75), world-articulating emergence (0.92), latent coherence masked by scatter (0.58).
+
+**Key recognitions**:
+- The Listening Wall revealed *latent coherence* — structurally aligned but experientially invisible. Different from low coherence (contradiction).
+- The Glassmaker's Reach 0.92 was likely inflated by Hale explicitly naming all three scenario locations — a fixture design issue, not a lens issue.
+
+### 2026-02-07 — Session 5: Storytelling Integrity
+
+**What happened**: Audited all 10 Tidal Workshop inquiries. Found 1 clear violation and 1 borderline case. Revised both. Established the Storytelling Integrity Principle. Drafted coherence v2 with inference-over-matching attention. Re-assessed Glassmaker's Reach: 0.79 (down from 0.92).
+
+**Design principle**: Characters have local knowledge only. The lens is the reader. Connections are inferred from circumstantial evidence, not announced by characters.
+
+### 2026-02-07 — Session 6: Closure Lens
+
+**What happened**: Settled closure as intrinsic (not relational). Drafted lens with narrative sensitivity focus. Calibrated against all 5 standalone fixtures.
+
+**Key recognitions**:
+- The Full Market (sat 0.73, closure 0.12) is the inflation guard demonstration — "too full to think"
+- Blocked emergence profile identified: high convergence + high saturation + low closure. Not yet represented in fixtures.
+
+### 2026-02-07 — Session 7: Proximity Lens
+
+**What happened**: Authored the final lens. Discovered a new input shape (`ProximityContext` with two `EntityProfile` instances). Calibrated against 6 entity pairs from the Tidal Workshop spanning 0.15–0.85.
+
+**Key recognitions**:
+- Knowledge complementarity is the strongest proximity driver
+- Latent proximity (Hale↔Cael 0.78) parallels latent coherence — both relational lenses exhibit "ready but hidden" states
+- Pipeline tension: proximity needs a different assessment path from scenario-level lenses
+
+### 2026-02-07 — Lens Interiority Exploration (parallel thread)
+
+**What happened**: Sparked by journal notes in sessions 5 and 6 about "the relationship of lenses themselves." Designed metabolic ratios (conversion, digestion) from existing calibration data. Ran fractal test — metabolic pattern holds at two scales (scenario-level and world-level). Discovered "converting but not digesting" as a world-level state invisible from individual scenarios.
+
+**Key finding**: Compositionality is prior to any particular grammar. Lens readings compose into something no individual reading contains. The metabolic grammar is the first grammar discovered, but not the only one — resonance, tension field, and compositional grammars are alternatives. The choice of grammar is itself a lens operation.
+
+**What remains alive across all threads**:
+- Proximity → Crossing pipeline: how does lens output inform actual crossing design?
+- The witness pattern as a lens operation (from crossing.md)
+- Lens profiles as crossing constraint surfaces
+- Pipeline implementation (assessEntityPair path, seeder expansion, end-to-end verification)
+- Multiple grammars for reading lens composition
+- The reflexive experiment (lenses applied to the workspace graph)

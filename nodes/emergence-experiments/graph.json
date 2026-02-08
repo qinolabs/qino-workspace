@@ -2,5 +2,54 @@
   "id": "emergence-experiments-log",
   "title": "Emergence Experiments — log",
   "nodes": [],
-  "edges": []
+  "edges": [
+    {
+      "source": "session-002",
+      "target": "session-001",
+      "type": "sparked-by",
+      "context": "calibration table revealed coherence as the next architectural frontier"
+    },
+    {
+      "source": "session-003",
+      "target": "session-002",
+      "type": "sparked-by",
+      "context": "coherence lens revealed that fixtures need a world to cohere with"
+    },
+    {
+      "source": "session-004",
+      "target": "session-003",
+      "type": "sparked-by",
+      "context": "world fixture ready for coherence assessment"
+    },
+    {
+      "source": "session-005",
+      "target": "session-004",
+      "type": "sparked-by",
+      "context": "the 0.92 tension reveals a deeper design principle about implicit connection"
+    },
+    {
+      "source": "session-006",
+      "target": "session-005",
+      "type": "sparked-by",
+      "context": "storytelling integrity sharpened what 'lived with enough' means for closure"
+    },
+    {
+      "source": "session-007",
+      "target": "session-006",
+      "type": "sparked-by",
+      "context": "closure completed the intrinsic lenses; proximity is the final relational lens"
+    },
+    {
+      "source": "lens-interiority",
+      "target": "session-005",
+      "type": "sparked-by",
+      "context": "journal note: lenses as grammar, multi-dimensional shaping tool"
+    },
+    {
+      "source": "lens-interiority",
+      "target": "session-006",
+      "type": "sparked-by",
+      "context": "journal note: relationship of lenses matters more than individual lens"
+    }
+  ]
 }
