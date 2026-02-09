@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/Users/picard/Code/qinolabs/qino-claude",
+      "/Users/picard/Code/qinolabs/qinolabs-repo"
+    ]
+  },
+  "extraKnownMarketplaces": {
+    "qino-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/picard/Code/qinolabs/qino-claude/plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "qino@qino-plugins": true,
+    "qino-prose@qino-plugins": true,
+    "qino-art@qino-plugins": true,
+    "speech@qino-plugins": true,
+    "design-adventure@qino-plugins": true
+  }
+}
