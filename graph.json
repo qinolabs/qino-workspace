@@ -28,6 +28,18 @@
       "target": "tech-qino-lens",
       "type": "references",
       "context": "readiness lenses extend the lens-slot architecture with an Emergence Layer"
+    },
+    {
+      "source": "lens-ecosystem",
+      "target": "tech-qino-lens",
+      "type": "references",
+      "context": "the lens concept architecture this navigator maps into modality integration"
+    },
+    {
+      "source": "lens-ecosystem",
+      "target": "emergence-experiments",
+      "type": "references",
+      "context": "sibling navigator — emergence maps what emerges; this maps how sensitivity reaches the organs"
     }
   ]
 }
