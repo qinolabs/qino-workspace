@@ -34,6 +34,12 @@ response-scratchpads/
 # Claude settings (local preferences)
 .claude/settings.local.json
 
+# VS Code local config
+.vscode/
+
+# Playwright MCP (browser automation cache)
+.playwright-mcp/
+
 # Package manager
 .pnpm-store/
 
