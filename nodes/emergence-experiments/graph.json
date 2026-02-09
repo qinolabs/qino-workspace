@@ -50,6 +50,12 @@
       "target": "session-006",
       "type": "sparked-by",
       "context": "journal note: relationship of lenses matters more than individual lens"
+    },
+    {
+      "source": "session-008",
+      "target": "session-007",
+      "type": "sparked-by",
+      "context": "proximity lens completed the instrument set; now test whether lens output informs crossing design"
     }
   ]
 }

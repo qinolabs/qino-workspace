@@ -157,3 +157,11 @@ Drafted the proximity lens with attention to knowledge complementarity, material
 
 captured: Lens Interiority — the grammar between lenses
 → [lens-interiority](nodes/lens-interiority/)
+
+
+## captured: Session 8 — Lens Readings as Crossing Constraints
+
+<!-- context: node/session-008 -->
+
+captured: Session 8 — Lens Readings as Crossing Constraints
+→ [session-008](nodes/session-008/)

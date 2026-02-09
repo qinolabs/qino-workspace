@@ -329,11 +329,16 @@ The first expression of accumulate → assess → emerge, implemented and runnin
 - **Fractal claim**: The metabolic pattern holds at two scales (scenario-level and world-level). Each scale generates states the other can't name ("converting but not digesting" is visible only at world level). But the fractal hasn't been tested at entity-pair or meta levels.
 - **Relational lenses absent**: Coherence and proximity aren't in any metabolic ratio yet. How do they participate in lens-to-lens composition?
 - **Normative risk**: The metabolic framing risks treating states like "indigestion" as pathology. The Full Market might not be stuck — it might be accumulating toward a phase transition the current lenses can't predict.
+- **NEW (annotation 007)**: Lenses consume each other — the network is alive, not static. Fertility generates what convergence finds. Convergence creates what saturation reads. The distinction between "lens" and "substrate" dissolves at certain scales. The correct framing is a digestive cycle, not a graph.
 
-### Crossing Connection
-- The proximity lens assesses readiness for crossing. The crossing facet (`concepts-repo/concepts/qino-world/facets/crossing.md`) describes how crossings happen. How does proximity output inform crossing design?
-- The NPC witness pattern (witness shapes arrival through quality of attention) is structurally the same as lensing. Is the witness a lens operation?
-- What crossings does a lens profile *permit*? Can the full 6-lens profile function as a constraint surface for the crossing system?
+### Crossing Connection (Session 8 — partially resolved)
+- ~~The proximity lens assesses readiness for crossing. How does proximity output inform crossing design?~~ → Session 8 traced Hale↔Cael (proximity 0.78) through full crossing mechanics. The proximity score is consumed by the receiving scenario's intrinsic profile, which determines the *kind* of crossing (convergence-accelerating vs fertility-catalyzing).
+- ~~The NPC witness pattern is structurally the same as lensing. Is the witness a lens operation?~~ → **Yes.** The witness reads the arrival through the scenario's accumulated lens profile. "Voice before face" is literally the lens reading arriving before the entity does. Different witnesses apply different lens functions to the same arrival.
+- ~~Can the full 6-lens profile function as a constraint surface for the crossing system?~~ → **Yes, via the consumption chain**: proximity → intrinsic profile → coherence → closure → witness selection → crossing character. Each layer metabolizes the previous. No individual reading determines the outcome.
+- **NEW**: Closure gates absorption capacity. Below ~0.05, no witness exists. Above ~0.50, arrivals must conform. The 0.05–0.50 range is where crossings are most alive. Needs more calibration data beyond Tidal Workshop.
+- **NEW**: The transformation service could receive lens profiles as crossing context — shaping (not constraining) how the AI interprets the figure against the scenario's state. Tension: over-determination kills surprise.
+- **NEW**: Crossing is asymmetric — same pair, same proximity, fundamentally different crossings depending on direction (receiving scenario's profile determines meaning).
+- **NEW**: How does a scenario's profile change AFTER a crossing? If Hale catalyzes convergence at the Listening Wall, the next assessment should reflect it. The crossing consumes the old profile and produces a new one.
 
 ### Scenario Lifecycle
 - When is a scenario "done"? Explicit user choice? Lens-detected closure? Both?
@@ -364,7 +369,7 @@ For entering this territory:
 6. **The seeded lenses** → `lens-lab-backend/src/services/readiness-lens-seeder.ts` — convergence + saturation (only 2 of 6 in code)
 7. **The assessment service** → `lens-lab-backend/src/services/assessment-service.ts` — how lenses are applied
 8. **The crossing facet** → `concepts-repo/concepts/qino-world/facets/crossing.md` — how proximity becomes encounter
-9. **The experiment log** → this sub-graph's nodes and annotations (sessions 1-7 + lens-interiority exploration)
+9. **The experiment log** → this sub-graph's nodes and annotations (sessions 1-8 + lens-interiority exploration)
 
 ---
 
@@ -461,10 +466,40 @@ For entering this territory:
 
 **Key finding**: Compositionality is prior to any particular grammar. Lens readings compose into something no individual reading contains. The metabolic grammar is the first grammar discovered, but not the only one — resonance, tension field, and compositional grammars are alternatives. The choice of grammar is itself a lens operation.
 
+### 2026-02-08 — Session 8: Lens Readings as Crossing Constraints
+
+**What happened**: Traced the Hale ↔ Cael pair (proximity 0.78) through crossing mechanics from `crossing.md`. Discovered the full consumption chain: proximity → intrinsic profile → coherence → closure → witness selection → crossing character. Each layer metabolizes the previous.
+
+**Key recognitions**:
+- Crossing is asymmetric: Cael → Glassmaker's Reach = convergence acceleration; Hale → Listening Wall = fertility catalysis. Same pair, opposite meanings
+- The NPC witness IS a lens function: "voice before face" is literally the lens reading arriving before the entity
+- Closure gates absorption: below ~0.05 no witness exists, above ~0.50 arrivals must conform, 0.05–0.50 is the live zone
+- Witness choice is a final lens selection: Hale witnessing = frequency recognition, Seren witnessing = cross-modal curiosity, Moth witnessing = territorial challenge
+- The consumption chain makes compositionality concrete — what lens-interiority described abstractly, crossing reveals as a world event
+
+**What was produced**:
+- Session-008 node with 7 annotations (3 readings, 2 connections, 1 proposal, 1 product-bridge connection)
+- Lens-interiority annotation 007 (lenses consume each other — alive network, not static graph)
+- Lens-lab product mapping: iteration 21 refinements + iteration 22 scope
+
+**Product bridge**: Session 8 informed lens-lab next steps:
+- All 6 lenses drafted — seed into assessment service (iteration 21)
+- Three input shapes confirmed — assessment service expansion (iteration 21)
+- Profile view needed for compositionality — compound lens display (iteration 22)
+- Entity-pair assessment path — `assessEntityPair()` (iteration 22)
+- Crossing simulation workshop — consumption chain as interactive surface (iteration 22)
+
+### 2026-02-08 — Lens Interiority Update (annotation 007)
+
+**What happened**: Captured the user's intuition about lenses consuming each other. The "graph of lenses" framing implies static nodes/edges. What the fractal test and session 8 showed is a digestive cycle — each lens metabolizes the substrate that other lenses have shaped. The distinction between lens and substrate dissolves at certain scales.
+
 **What remains alive across all threads**:
-- Proximity → Crossing pipeline: how does lens output inform actual crossing design?
-- The witness pattern as a lens operation (from crossing.md)
-- Lens profiles as crossing constraint surfaces
+- ~~Proximity → Crossing pipeline~~ → **Resolved** by session 8 (consumption chain)
+- ~~The witness pattern as a lens operation~~ → **Resolved** by session 8 (witness IS a lens function)
+- ~~Lens profiles as crossing constraint surfaces~~ → **Resolved** by session 8 (the full chain is traced)
 - Pipeline implementation (assessEntityPair path, seeder expansion, end-to-end verification)
 - Multiple grammars for reading lens composition
 - The reflexive experiment (lenses applied to the workspace graph)
+- **NEW**: Post-crossing profile change — how do lens readings shift after a crossing event?
+- **NEW**: Crossing simulation in lens-lab — interactive surface for the consumption chain (iteration 22)
+- **NEW**: Lenses as alive network — the distinction between lens and substrate dissolves at scale
