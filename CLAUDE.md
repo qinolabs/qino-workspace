@@ -81,13 +81,15 @@ qino-drops is a **real-time simulation** where the user's personal figures (abst
 
 ## Navigators
 
-**Location**: `qinolabs-repo/navigators/`
+Navigators are graph nodes (`type: "navigator"`) in the workspace root graph. They appear in qino-lab at `http://localhost:4020`.
 
 Living orientation documents for cross-cutting possibility spaces being actively explored or built. Each navigator maps terrain with meaning, carries a reading order, tracks open questions, and accumulates a session log across sessions.
 
-**When to use**: "use the active navigator", "navigate [territory]", "map this concept"
+**When to use**: "use the active navigator", "navigate [territory]", "create a navigator"
 
-**Not plans** (they don't prescribe tasks). **Not arcs** (arcs are live containers that trace inquiry as it moves; navigators map terrain for building). Different temporal quality — arcs follow emergence, navigators orient construction.
+**Not plans** (they don't prescribe tasks). **Not arcs** (arcs trace inquiry; navigators map terrain for building).
+
+**Current active navigators**: Check the root graph for nodes with `type: "navigator"`.
 
 ## Implementation Notes & Iterations
 
