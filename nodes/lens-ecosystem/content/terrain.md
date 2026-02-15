@@ -114,7 +114,10 @@ The discovery that shifts the ecosystem from tool to agentic system. Simulation 
 | **Simulation prototyping plan** | `implementations/docs/content/simulation-architecture.md` | The distributed orchestration pattern: Lens Lab orchestrates, World/Walk/Journey execute domain simulation. UserBehaviorProfile model, MCP findings channel. |
 | **Simulation operator agent** | `.claude/agents/simulation-operator.md` | Methodology home: experiment design, orchestration pattern, human integration protocol, built-in experiment templates. |
 | **Starter deck adapter** | `apps/lens-lab-backend/src/adapters/starter-deck-adapter.ts` | Transforms deck types → assessment-compatible substrate. `deckScenarioToSubstrate()`, `deckWorldToContext()`, `listDeckSummaries()`. |
-| **Simulation router** | `apps/lens-lab-backend/src/routers/simulation-router.ts` | Public tRPC procedures: `listDecks`, `getDeckScenario`, `assessDeckScenario`, `assessDeckProfile`. Development-time tool, no auth. |
+| **Simulation router** | `apps/lens-lab-backend/src/routers/simulation-router.ts` | 8 public tRPC procedures across two phases: deck browsing + assessment (Phase 1), user session simulation + profile comparison (Phase 2). Development-time tool, no auth. |
+| **Simulation profiles** | `apps/lens-lab-backend/src/simulation-profiles.ts` | 4 built-in profiles (curious-explorer, lore-seeker, relationship-builder, speedrunner) spanning the engagement spectrum. Profiles are a Lens Lab concern — World receives only the `profilePrompt` string. |
+| **World simulation service** | `apps/qino-world-backend/src/services/simulation-service.ts` | Turn loop using the real dialogue pipeline: user message generation → `generateDialogue` → `extractMentions`. Same code path as production chat-stream. |
+| **Simulation framework docs** | `implementations/lens-lab/content/24-simulation-framework.md` | Retrospective documentation of the built pipeline + forward work: `simulateModelComparison` and `simulateMatrix` endpoints. |
 | **Starter decks package** | `packages/starter-decks/` | 13 decks with worlds, scenarios, manifestations, crossings. The default substrate for all simulation. |
 
 **The distributed simulation architecture**: Each modality owns its simulation piece. World simulates dialogue, crossing, and awakening. Walk simulates atmosphere and companions. Lens Lab orchestrates and assesses. This mirrors `seed()` ownership — World knows how to seed World data, so World knows how to simulate World interactions.
@@ -126,6 +129,29 @@ The discovery that shifts the ecosystem from tool to agentic system. Simulation 
 **Starter decks as default substrate**: 13 decks provide the testing ground. Side effects: deck quality improves through simulation feedback, we learn what makes good deck design, different themes surface different emergence patterns. The threshold deck's frontier-station scenario becomes the canonical test case.
 
 **User behavior profiles**: Different simulated users (curious explorer, lore-seeker, relationship-builder, speedrunner) produce different substrate patterns — testing how the system responds to the full range of human engagement. The key test: same deck scenario, 4 profiles → 4 substrates → 4 readiness assessments.
+
+---
+
+## VIII. Dialogue Quality + Model Economics
+
+Dialogue quality became measurable through the simulation pipeline. The prompt architecture was reworked and validated across models, establishing a cross-cutting quality surface that connects World (prompt owner), Lens Lab (test harness), and Walk (future consumer).
+
+| What | Where | Why It Matters Here |
+|------|-------|---------------------|
+| **Dialogue quality workspace** | `implementations/dialogue-quality/story.md` | Cross-cutting node: prompt architecture review, model comparison findings, relationship to simulation. Tracks the "why" and "what we observed" — World iterations track "what changed." |
+| **World iteration 24** | `implementations/qino-world/content/24-dialogue-voice-quality.md` | Prompt rework: replaced keyword-matching pipeline with direct personality injection, conversation-mode framing, relaxed formatting rules. |
+| **MODELS.DIALOGUE tier** | `packages/ai/` (`@qinolabs/ai`) | DeepSeek V3.2 as dialogue model. Used by `dialogue-service.ts` (conversation) and `awakening-service.ts` (first speech). 75%+ cheaper than Haiku, validated character differentiation. |
+| **Model comparison data** | `implementations/dialogue-quality/story.md`, "Model Comparison Findings" section | 4-model x 3-deck x 6-turn matrix (216 LLM calls). All candidates produced viable dialogue. DeepSeek selected for best quality-per-dollar. |
+
+**What the prompt rework proved**: Rich character data (origin, personality, visual presence from starter decks) flows directly to the LLM. The LLM infers voice from character — no keyword-matching intermediary. The baseline is model-agnostic: all 4 tested models produced character-differentiated dialogue with deck-specific tone.
+
+**What the model economics changed**: DeepSeek V3.2 at $0.25/$0.38 per M tokens makes high-volume simulation routine. A 13-deck x 4-profile sweep costs what a 3-deck x 1-profile sweep used to cost with Haiku. The three-tier model architecture (FAST for cheap tasks, DIALOGUE for character voice, CHAT for complex multi-party) gives each use case a clear cost-quality tradeoff.
+
+**What this unlocks across the territory**:
+- **Simulation as regression tool**: Any prompt change or model swap validated against the 13-deck baseline in minutes. The `dialogueModel` override threads through the entire pipeline.
+- **Walk prompt architecture**: The "pass rich data, let LLM infer" pattern directly informs Walk's narrator/companion voice design. Walk's indirect consumption (figures color narrator awareness) is easier when prompts don't prescribe voice buckets.
+- **Crossing dialogue quality**: World 23 (inline crossing) inherits improved character voice. Witness reactions gain texture when the arriving figure speaks distinctively.
+- **Deck quality as observable property**: Different decks produce measurably different substrate density, mention extraction rates, and readiness profiles. The threshold deck's frontier-station is the reference; other decks compare against it.
 
 ---
 
@@ -143,6 +169,7 @@ For entering this territory fresh:
 8. **The laboratory** -> `implementations/lens-lab/story.md` + `content/23-relational-lenses-and-crossing.md` — where calibration happens
 9. **Design principles** -> `qino-concepts/concepts/ecosystem-design-principles/content/design-principles.md` — Trust the Ecosystem, Boundaries of Meaning
 10. **Simulation as slot orchestration** -> § VII above + `.claude/agents/simulation-operator.md` — the agentic framing: distributed simulation, modalities as outer lenses, starter decks as default substrate, user behavior profiles
+11. **Dialogue quality and model economics** -> § VIII above + `implementations/dialogue-quality/story.md` — prompt architecture review, model comparison matrix, the cross-cutting quality surface connecting World, Lens Lab, and Walk
 
 ---
 
@@ -164,6 +191,13 @@ For entering this territory fresh:
 - How does Walk's atmosphere simulation feed back into deck design? Walk owns its simulation piece but the orchestrator (Lens Lab) needs to interpret results and surface findings. What's the interface between Walk simulation output and deck quality assessment?
 - What's the right granularity for user behavior profiles? 4 built-in archetypes (curious-explorer, lore-seeker, relationship-builder, speedrunner) vs. continuous parameter space. Archetypes are more interpretable; parameters are more flexible.
 - When does the starter deck generator graduate from prototyping tool to production feature? The assessment pipeline becomes the quality function for generated decks, but at what point does generated content meet the bar set by hand-designed decks?
+
+### Dialogue Quality & Model Selection
+
+- Does the conversation-mode framing change behavior over longer sessions (15+ turns)? The matrix tested 6 turns — arc awareness may need validation at depth.
+- How does the `speedrunner` profile interact with relaxed formatting? Ultra-compressed responses (7-36w from Grok) are viable dialogue, but do they produce enough mention substrate for readiness assessment?
+- When DeepSeek V4 arrives, does the model comparison matrix need to expand beyond 3 decks? Current selection (threshold, night-train, tide-pool) covers sci-fi/European/ecological themes but misses others.
+- Walk's narrator voice needs a model tier — does DIALOGUE (DeepSeek) suit indirect figure-coloring, or does the narrator's longer-form output need a different model?
 
 ### Calibration Loop
 
@@ -239,3 +273,32 @@ For entering this territory fresh:
 - MCP findings channel: surface simulation results through qinolabs-mcp
 - Iteration 23 alignment: crossing simulation feeds directly into inline crossing work
 - First real simulation run: test threshold deck with all 4 profiles
+
+### 2026-02-15 — Session 4: Dialogue Quality + Model Economics
+
+**What happened**: Reworked the dialogue prompt pipeline to replace keyword-matching with direct personality injection. Ran a 4-model x 3-deck x 6-turn simulation matrix (216 LLM calls) to validate the prompt baseline as model-agnostic. Selected DeepSeek V3.2 as the MODELS.DIALOGUE tier. Documented the simulation framework retrospectively (lens-lab iteration 24) and established the dialogue-quality cross-cutting workspace.
+
+**Key moves**:
+- Prompt rework: direct personality injection, conversation-mode framing, relaxed formatting rules — eliminated the 6-bucket keyword matching that discarded rich starter deck character data
+- Model comparison matrix: 4 models (Haiku 4.5, DeepSeek V3-0324, Grok 4.1 Fast, Grok 4 Fast) x 3 decks (threshold, night-train, tide-pool) x 6 turns — all produced character-differentiated dialogue, confirming model-agnostic prompt baseline
+- DeepSeek V3.2 deployed as MODELS.DIALOGUE: $0.25/$0.38 per M tokens (75-92% cheaper than Haiku), best quality-per-dollar balance, used by dialogue-service and awakening-service
+- Simulation framework documented: lens-lab iteration 24 captures the full pipeline (deck adapter, simulation router with 8 procedures, 4 profiles, world-backend simulation service) and plans `simulateModelComparison` / `simulateMatrix` endpoints
+- Cross-cutting dialogue-quality workspace (`implementations/dialogue-quality/`) established — connects World (prompt owner), Lens Lab (test harness), Walk (future consumer)
+
+**What was produced**:
+- World iteration 24 (dialogue voice quality) — prompt rework complete
+- Dialogue quality workspace (`implementations/dialogue-quality/story.md`) with prompt review + model comparison findings
+- DeepSeek V3.2 integration in `@qinolabs/ai` (new MODELS.DIALOGUE tier)
+- Lens Lab iteration 24 (simulation framework documentation + forward work spec)
+- Terrain section VIII (dialogue quality + model economics) added to this navigator
+- Proposal annotation: test DeepSeek V4 when it lands (expected Feb 17)
+
+**What shifted**: Dialogue quality is now measurable through the simulation pipeline — not just subjective play-testing. Model economics transformed: high-volume simulation sweeps became routine rather than expensive. The prompt architecture proved model-agnostic, meaning model selection is purely an economics and quality-ceiling decision, not a compatibility constraint. The cross-cutting dialogue-quality workspace makes prompt evolution visible across World, Lens Lab, and Walk.
+
+**What remains alive**:
+- World 23 (inline crossing transformation) — improved character voice makes witness reactions sharper
+- Lens Lab 23 (relational lenses + crossing simulation) — can now pull live post-dialogue substrate from the simulation pipeline
+- Lens Lab 24 forward work — `simulateModelComparison` and `simulateMatrix` endpoints replace bash-script-calling-curl
+- Walk prompt architecture — "pass rich data, let LLM infer" pattern directly applicable to narrator/companion voice
+- DeepSeek V4 evaluation — proposal annotation tracks this; one simulation run produces direct comparison
+- Mention and awakening system assessment — do simulation profiles produce enough substrate for readiness assessment at different engagement styles?
