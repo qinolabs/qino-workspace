@@ -226,11 +226,16 @@ For entering this territory fresh:
 - Starter deck adapter (`apps/lens-lab-backend/src/adapters/starter-deck-adapter.ts`)
 - Simulation router with public procedures for deck browsing and assessment
 - Unit tests validating all 13 decks produce valid substrate shapes
+- Phase 2: World backend `simulateSession()` RPC — dialogue simulation with mention extraction
+- Phase 2: World simulation service (`apps/qino-world-backend/src/services/simulation-service.ts`) — turn loop, LLM user message generation, real dialogue pipeline
+- Phase 2: 4 simulation profiles (curious-explorer, lore-seeker, relationship-builder, speedrunner) in `apps/lens-lab-backend/src/simulation-profiles.ts`
+- Phase 2: Simulation router additions — `listProfiles`, `simulateUserSession`, `simulateProfileComparison`
+- 277 unit tests passing (including 22 new profile tests)
 
-**What shifted**: The lens ecosystem territory expanded from "how lenses reach modalities" to "modalities as perception slots in an agentic system." Simulation prototyping becomes the development practice upstream of all app work — test what works before building the full thing.
+**What shifted**: The lens ecosystem territory expanded from "how lenses reach modalities" to "modalities as perception slots in an agentic system." Simulation prototyping becomes the development practice upstream of all app work — test what works before building the full thing. The full loop is now operational: Claude can simulate different user types against any of the 13 starter decks and assess the resulting substrate through readiness lenses.
 
 **What remains alive**:
-- Phase 2: World backend `simulateSession()` RPC for user behavior simulation
-- Phase 3: Crossing + dialogue simulation (World + Walk)
+- Phase 3: Crossing + dialogue simulation (World + Walk), atmosphere simulation
 - MCP findings channel: surface simulation results through qinolabs-mcp
 - Iteration 23 alignment: crossing simulation feeds directly into inline crossing work
+- First real simulation run: test threshold deck with all 4 profiles

@@ -120,6 +120,26 @@ implementations/{app}/
 
 **Active apps with implementations**: qino-drops, qino-world, qino-chronicles, qino-journey, qino-frame, qino-walk, qino-label, lens-lab, qino-infra
 
+**Iteration index**: `qinolabs-repo/implementations/graph.json` lists all apps and their iterations in one place.
+
+## Proposal Annotations
+
+Feature ideas and observations that arise during work but shouldn't be acted on immediately are captured as **proposal annotations** on implementation nodes.
+
+**Convention**:
+- Signal: `proposal`
+- Lifecycle: `open` (default at creation) -> `accepted` (will influence next iteration) -> `resolved` (built) or `dismissed` (not pursuing)
+- Written to: `implementations/{app}/annotations/{NNN}-{slug}.md`
+- Format: standard annotation frontmatter (`signal: proposal`, `created: YYYY-MM-DD`, optional `target:` for related iteration/concept)
+
+**When to write**: During implementation work, when you notice a feature idea, cross-app opportunity, or architectural improvement that belongs in a future iteration rather than the current one.
+
+**When to read**: Before planning a new iteration. Open proposals on the app's node carry accumulated insight from prior sessions.
+
+**How to write**: Use the MCP `write_annotation` tool (signal: `proposal`, nodeId: the app id, graphPath: `qinolabs-repo`) or write the annotation file directly.
+
+**How to resolve**: Use the MCP `resolve_annotation` tool or update the annotation's frontmatter (`status: resolved`, `resolvedAt: YYYY-MM-DD`).
+
 ## Technical Documentation
 
 **Location**: `qinolabs-repo/implementations/docs/`

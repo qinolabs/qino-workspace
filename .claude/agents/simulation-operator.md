@@ -39,8 +39,8 @@ Every experiment follows this arc:
 
 Lens Lab orchestrates. Modalities execute their domain expertise.
 
-- **Phase 1 (current)**: Lens Lab transforms deck data → unencountered substrate → assessment. All local.
-- **Phase 2 (future)**: Lens Lab calls `WORLD.simulateSession()` → World generates dialogue, extracts mentions, accumulates substrate → Lens Lab assesses.
+- **Phase 1**: Lens Lab transforms deck data → unencountered substrate → assessment. All local, no modality RPCs.
+- **Phase 2 (current)**: Lens Lab calls `WORLD.simulateSession()` → World generates dialogue, extracts mentions, accumulates substrate → Lens Lab assesses. 4 user profiles (curious-explorer, lore-seeker, relationship-builder, speedrunner) produce different substrates.
 - **Phase 3 (future)**: Walk atmosphere simulation, crossing simulation, dialogue exchange simulation.
 
 ### Human Integration Protocol
