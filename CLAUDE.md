@@ -17,6 +17,9 @@ This is a multi-repo workspace. Navigate to the appropriate repo based on the ta
 | `external-apps/` | External client apps | Standalone projects outside qinolabs ecosystem |
 | `external-concepts/` | External project concepts | Design docs for external client work |
 | `concepts-repo/` | **Deprecated** — being phased out | Legacy concepts, migrate to qino-concepts |
+| `gamejoin-app/` | Standalone gamejoin prototype | Reference/comparison only |
+
+**gamejoin-app disambiguation**: "gamejoin-app" refers to the app inside `qinolabs-repo/` unless explicitly stated otherwise (e.g., "compare with the gamejoin prototype" refers to the standalone `gamejoin-app/` at workspace root).
 
 ## Quick Navigation
 

@@ -16,6 +16,11 @@
 !.claude/
 !.claude/qino-config.json
 !.claude/settings.json
+!.claude/agents/
+!.claude/agents/**
+
+# ─── MCP config ──────────────────────────────
+!.mcp.json
 
 # ─── Protocol graph ──────────────────────────
 !graph.json

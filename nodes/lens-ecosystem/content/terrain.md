@@ -105,6 +105,30 @@ The read path is built. The write path (Lab calibrating Journey's lens behavior)
 
 ---
 
+## VII. Simulation as Slot Orchestration
+
+The discovery that shifts the ecosystem from tool to agentic system. Simulation prototyping applies the same distributed ownership pattern as `seed()` / `seedFromDeck()` — each modality owns its simulation piece.
+
+| What | Where | Why It Matters Here |
+|------|-------|---------------------|
+| **Simulation prototyping plan** | `implementations/docs/content/simulation-architecture.md` | The distributed orchestration pattern: Lens Lab orchestrates, World/Walk/Journey execute domain simulation. UserBehaviorProfile model, MCP findings channel. |
+| **Simulation operator agent** | `.claude/agents/simulation-operator.md` | Methodology home: experiment design, orchestration pattern, human integration protocol, built-in experiment templates. |
+| **Starter deck adapter** | `apps/lens-lab-backend/src/adapters/starter-deck-adapter.ts` | Transforms deck types → assessment-compatible substrate. `deckScenarioToSubstrate()`, `deckWorldToContext()`, `listDeckSummaries()`. |
+| **Simulation router** | `apps/lens-lab-backend/src/routers/simulation-router.ts` | Public tRPC procedures: `listDecks`, `getDeckScenario`, `assessDeckScenario`, `assessDeckProfile`. Development-time tool, no auth. |
+| **Starter decks package** | `packages/starter-decks/` | 13 decks with worlds, scenarios, manifestations, crossings. The default substrate for all simulation. |
+
+**The distributed simulation architecture**: Each modality owns its simulation piece. World simulates dialogue, crossing, and awakening. Walk simulates atmosphere and companions. Lens Lab orchestrates and assesses. This mirrors `seed()` ownership — World knows how to seed World data, so World knows how to simulate World interactions.
+
+**Modalities as outer lenses**: The slot architecture that governs inner lens behavior (crossing, narrator, companion, soundscape) now describes how humans perceive the system through modality surfaces. Each modality is a perception slot — a lensing surface for human experience. World lenses through dialogue and place. Walk lenses through movement and atmosphere. This reframing makes the modality–slot relationship recursive: lenses operate inside modalities, and modalities operate as lenses on the ecosystem.
+
+**The agentic framing**: Simulation prototyping turns the ecosystem into an agentic system. Claude orchestrates through Lens Lab, each modality responds with its domain expertise. The pattern mirrors how lens slots work internally: orchestration selects, slots generate. The simulation operator agent codifies the methodology — hypothesis → substrate selection → simulation → assessment → findings.
+
+**Starter decks as default substrate**: 13 decks provide the testing ground. Side effects: deck quality improves through simulation feedback, we learn what makes good deck design, different themes surface different emergence patterns. The threshold deck's frontier-station scenario becomes the canonical test case.
+
+**User behavior profiles**: Different simulated users (curious explorer, lore-seeker, relationship-builder, speedrunner) produce different substrate patterns — testing how the system responds to the full range of human engagement. The key test: same deck scenario, 4 profiles → 4 substrates → 4 readiness assessments.
+
+---
+
 ## Reading Order
 
 For entering this territory fresh:
@@ -118,6 +142,7 @@ For entering this territory fresh:
 7. **Walk's constraint** -> `implementations/qino-walk/story.md` — "No figure addresses the walker" and the three-mode architecture
 8. **The laboratory** -> `implementations/lens-lab/story.md` + `content/23-relational-lenses-and-crossing.md` — where calibration happens
 9. **Design principles** -> `qino-concepts/concepts/ecosystem-design-principles/content/design-principles.md` — Trust the Ecosystem, Boundaries of Meaning
+10. **Simulation as slot orchestration** -> § VII above + `.claude/agents/simulation-operator.md` — the agentic framing: distributed simulation, modalities as outer lenses, starter decks as default substrate, user behavior profiles
 
 ---
 
@@ -133,6 +158,12 @@ For entering this territory fresh:
 
 - How does Walk's "no figure addresses the walker" principle translate into lens integration code? The lens intelligence colors the narrator, not the figure. What does the prompt structure look like?
 - When a modality needs lens-informed generation, does it call Journey at all, or does it just use the lens definitions (already available via `getLenses`) and build its own prompts?
+
+### Simulation & Agentic Architecture
+
+- How does Walk's atmosphere simulation feed back into deck design? Walk owns its simulation piece but the orchestrator (Lens Lab) needs to interpret results and surface findings. What's the interface between Walk simulation output and deck quality assessment?
+- What's the right granularity for user behavior profiles? 4 built-in archetypes (curious-explorer, lore-seeker, relationship-builder, speedrunner) vs. continuous parameter space. Archetypes are more interpretable; parameters are more flexible.
+- When does the starter deck generator graduate from prototyping tool to production feature? The assessment pipeline becomes the quality function for generated decks, but at what point does generated content meet the bar set by hand-designed decks?
 
 ### Calibration Loop
 
@@ -177,3 +208,29 @@ For entering this territory fresh:
 **What was retained**: The calibration vocabulary (`SlotType`, `SLOT_DEFINITIONS`, `LensContext` extensions, enhanced `selectLens` cascade) stays as design language that informs lens selection without requiring runtime API calls.
 
 **What shifted**: The open questions changed character. "What should `getLensContext` return?" becomes "Does a metadata API make sense, or should modalities just use lens definitions directly?" The feedback loop question shifts from "how does Lab write to `attention_adaptations`?" to "what mechanism replaces it?"
+
+### 2026-02-15 — Session 3: Simulation Prototyping Surface Design + Build
+
+**What happened**: Designed the simulation prototyping surface as a distributed architecture — each modality owns its simulation piece, Lens Lab orchestrates and assesses. Discovered that this mirrors the slot architecture at a higher level: modalities as outer lenses, simulation as slot orchestration. Built Phase 1 (deck access + unencountered assessment MVP).
+
+**Key moves**:
+- Game-design-prototyping inspiration → starter deck access as default substrate
+- User behavior profiles as the testing dimension (not just different decks, but different users)
+- Distributed modality ownership: World simulates dialogue, Walk simulates atmosphere
+- Arrived at "modalities as outer lenses" — the slot architecture goes recursive
+- Built: starter deck adapter, simulation router, simulation-operator agent definition
+
+**What was produced**:
+- Terrain section VII (simulation as slot orchestration)
+- Simulation-operator agent definition (`.claude/agents/simulation-operator.md`)
+- Starter deck adapter (`apps/lens-lab-backend/src/adapters/starter-deck-adapter.ts`)
+- Simulation router with public procedures for deck browsing and assessment
+- Unit tests validating all 13 decks produce valid substrate shapes
+
+**What shifted**: The lens ecosystem territory expanded from "how lenses reach modalities" to "modalities as perception slots in an agentic system." Simulation prototyping becomes the development practice upstream of all app work — test what works before building the full thing.
+
+**What remains alive**:
+- Phase 2: World backend `simulateSession()` RPC for user behavior simulation
+- Phase 3: Crossing + dialogue simulation (World + Walk)
+- MCP findings channel: surface simulation results through qinolabs-mcp
+- Iteration 23 alignment: crossing simulation feeds directly into inline crossing work

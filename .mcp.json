@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "qino-lingo": {
+      "command": "/Users/picard/Code/qinolabs/qino-lingo/.venv/bin/python",
+      "args": ["/Users/picard/Code/qinolabs/qino-lingo/mcp-server/server.py"]
+    },
+    "qino-lab": {
+      "command": "node",
+      "args": [
+        "/Users/picard/Code/qinolabs/community/packages/qinolabs-mcp/dist/server/index.js"
+      ],
+      "env": {
+        "WORKSPACE_DIR": "/Users/picard/Code/qinolabs",
+        "API_URL": "http://localhost:4020"
+      }
+    }
+  }
+}
