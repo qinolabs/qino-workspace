@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T18:43:33Z
 ---
 **The world context shape** — what coherence needs beyond `{{substrate}}` and `{{scenarioContext}}`:
 

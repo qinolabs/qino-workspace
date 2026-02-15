@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: connection
-created: 2026-02-07
+created: 2026-02-07T18:17:14Z
 ---
 The 2D readiness space (convergence x saturation) maps to the qino-lab annotation signal types. `connection` signals are convergence detectors — "these relate." The act of writing a `connection` annotation IS a micro-convergence assessment. The annotation signals aren't just metadata categories; they're manual readiness lenses applied at human scale.
 

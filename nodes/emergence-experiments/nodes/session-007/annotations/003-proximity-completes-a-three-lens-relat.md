@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: connection
-created: 2026-02-07
+created: 2026-02-07T19:43:57Z
 ---
 **Proximity completes a three-lens relational picture — and reveals a pattern across all lenses.**
 

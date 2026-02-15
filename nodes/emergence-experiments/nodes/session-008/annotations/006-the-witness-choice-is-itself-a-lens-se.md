@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-08
+created: 2026-02-08T11:29:47Z
 ---
 **The witness choice is itself a lens selection — one more level of consumption.** The scenario profile constrains the set of possible witnesses. Each witness applies a different lens function to the same arrival.
 

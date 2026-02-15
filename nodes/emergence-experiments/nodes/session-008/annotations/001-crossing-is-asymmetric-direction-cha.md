@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-08
+created: 2026-02-08T11:28:15Z
 ---
 **Crossing is asymmetric — direction changes the kind, not just the fact.** Hale ↔ Cael proximity is 0.78 regardless of direction. But the receiving scenario's profile determines what the arrival means.
 

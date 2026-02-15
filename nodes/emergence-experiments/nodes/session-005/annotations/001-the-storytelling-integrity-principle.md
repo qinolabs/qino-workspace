@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T19:08:33Z
 ---
 **The Storytelling Integrity Principle** — what characters can and cannot know:
 

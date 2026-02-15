@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T21:16:01Z
 ---
 **Compositionality is prior to any particular grammar.**
 

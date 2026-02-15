@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: connection
-created: 2026-02-07
+created: 2026-02-07T18:53:00Z
 ---
 **The world fixture design mirrors the emergence pattern itself.** The Tidal Workshop has its own accumulate → assess → emerge structure:
 

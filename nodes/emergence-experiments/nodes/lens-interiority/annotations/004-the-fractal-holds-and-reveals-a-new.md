@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: connection
-created: 2026-02-07
+created: 2026-02-07T20:57:03Z
 ---
 **The fractal holds — and reveals a new metabolic state the scenario-level instrument couldn't name.**
 

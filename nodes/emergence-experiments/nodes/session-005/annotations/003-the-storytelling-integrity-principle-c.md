@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: connection
-created: 2026-02-07
+created: 2026-02-07T19:09:47Z
 ---
 **The storytelling integrity principle connects back to the qino-world design constraints** from the navigator terrain:
 

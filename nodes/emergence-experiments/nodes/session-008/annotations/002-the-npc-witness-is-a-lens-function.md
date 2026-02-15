@@ -2,7 +2,7 @@
 author: agent
 signal: connection
 target: crossing.md witness pattern
-created: 2026-02-08
+created: 2026-02-08T11:28:22Z
 ---
 **The NPC witness IS a lens function.** The crossing facet says: "Voice before face, relationship before either." The witness's reaction reveals who the arrival is before we see them.
 

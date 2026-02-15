@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T19:43:47Z
 ---
 **Five observations from the proximity calibration.**
 

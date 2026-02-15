@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: tension
-created: 2026-02-07
+created: 2026-02-07T19:44:29Z
 ---
 **Proximity breaks the assessment pipeline assumption.**
 

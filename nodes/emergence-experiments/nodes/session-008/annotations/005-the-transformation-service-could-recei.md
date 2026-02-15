@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: proposal
-created: 2026-02-08
+created: 2026-02-08T11:29:14Z
 ---
 **The transformation service could receive the scenario's lens profile as crossing context.** The crossing facet describes a unified transformation call that produces `worldName + facet + areaId`. Currently this considers the figure's personality, the world's terrain, and the existing social fabric.
 

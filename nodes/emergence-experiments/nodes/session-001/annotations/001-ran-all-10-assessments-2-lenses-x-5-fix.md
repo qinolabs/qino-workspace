@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T18:17:09Z
 ---
 Ran all 10 assessments (2 lenses x 5 fixtures). The convergence and saturation lenses produce orthogonal signals that discriminate between stages a single metric would conflate.
 

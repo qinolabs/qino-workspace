@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T19:21:23Z
 ---
 **Closure is intrinsic, not relational.** The substrate already contains what the lens needs: `currentTension` (the question being held) + `relationalInquiries` (the voices that have engaged with it). No world context or temporal history required.
 

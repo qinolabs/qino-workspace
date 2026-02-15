@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T18:28:44Z
 ---
 **Fertility lens (v1) tested against all 5 fixtures.** The hypothesis holds — fertility fills the low-end discrimination gap.
 

@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T20:36:47Z
 ---
 **First metabolic instrument — two ratios derived from existing calibration data.**
 

@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: connection
-created: 2026-02-07
+created: 2026-02-07T19:22:59Z
 ---
 **The Full Market reveals why closure is the inflation guard.** Its profile — high saturation (0.73), low convergence (0.13), low closure (0.12) — describes a state where emergence is impossible despite abundant material: *too full to think*.
 

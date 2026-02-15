@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-08
+created: 2026-02-08T11:26:45Z
 ---
 **Lenses consume each other — the network is alive, not static.** The "graph of lenses" framing implies nodes and edges — a fixed topology. But the fractal test revealed something different: lenses don't just measure, they metabolize each other's outputs.
 

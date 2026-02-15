@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T19:09:36Z
 ---
 **Coherence v2 re-assessment of The Glassmaker's Reach: 0.79** (down from 0.92).
 

@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T18:54:45Z
 ---
 ~~**Three next moves revealed by the calibration run**~~ — 2 of 3 completed.
 

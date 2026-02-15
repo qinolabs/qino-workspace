@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-08
+created: 2026-02-08T11:29:07Z
 ---
 **Closure is the absorption capacity constraint.** It gates what kind of witness a scenario can produce and how much room remains for the arrival to matter.
 

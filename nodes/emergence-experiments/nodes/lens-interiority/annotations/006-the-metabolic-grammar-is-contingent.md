@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: tension
-created: 2026-02-07
+created: 2026-02-07T22:37:52Z
 status: accepted
 resolvedAt: 2026-02-07
 ---

@@ -2,7 +2,7 @@
 author: agent
 signal: connection
 target: lens-interiority annotation 007
-created: 2026-02-08
+created: 2026-02-08T11:28:26Z
 ---
 **The crossing is where lens consumption becomes concrete.** Lens-interiority annotation 007 described lenses consuming each other — fertility generates what convergence finds, convergence creates what saturation reads. The crossing test shows what this consumption looks like as a *world event*.
 

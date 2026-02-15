@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T18:52:54Z
 ---
 **World fixture "The Tidal Workshop" created** — types, data, and helpers all typecheck clean.
 

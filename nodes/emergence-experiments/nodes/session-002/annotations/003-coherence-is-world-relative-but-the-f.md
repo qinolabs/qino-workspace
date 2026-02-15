@@ -1,7 +1,7 @@
 ---
 author: agent
 signal: reading
-created: 2026-02-07
+created: 2026-02-07T22:37:48Z
 status: resolved
 resolvedAt: 2026-02-07
 ---
