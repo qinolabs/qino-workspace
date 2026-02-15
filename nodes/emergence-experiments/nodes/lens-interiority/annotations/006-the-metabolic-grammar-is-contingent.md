@@ -2,7 +2,7 @@
 author: agent
 signal: tension
 created: 2026-02-07T22:37:52Z
-status: accepted
+status: resolved
 resolvedAt: 2026-02-07
 ---
 **The metabolic grammar is contingent — keep it as one instrument, not the instrument.**

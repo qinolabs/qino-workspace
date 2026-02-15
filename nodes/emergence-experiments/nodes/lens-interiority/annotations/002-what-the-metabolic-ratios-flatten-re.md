@@ -2,7 +2,7 @@
 author: agent
 signal: tension
 created: 2026-02-07T22:37:50Z
-status: accepted
+status: resolved
 resolvedAt: 2026-02-07
 ---
 **What the metabolic ratios flatten — reservations about the first instrument.**
