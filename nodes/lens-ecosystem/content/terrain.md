@@ -44,7 +44,8 @@ World is 23 iterations deep. It has the richest infrastructure for lens integrat
 | **World voicing service** | `apps/qino-world-backend/src/services/voicing-service.ts` | Local facet generation for crossing. Builds prompts from manifestation + world + scenario context. |
 | **Transformation service** | `apps/qino-world-backend/src/services/transformation-service.ts` | Unified AI call: `worldName + facet + areaId` during crossing ceremony. The crossing integration that `voiceFigureWithData` feeds into. |
 | **Crossing composition** | `apps/qino-world-backend/src/services/crossing-composition-service.ts` | Orchestrates crossing: resolution via Weave, voicing via Journey, placement via areas. The full pipeline from ecosystem figure to World manifestation. |
-| **Awakening service** | `apps/qino-world-backend/src/services/awakening-service.ts` | Mention-to-manifestation pipeline. Future site for readiness lens integration (assessment slot). |
+| **Awakening service** | `apps/qino-world-backend/src/services/awakening-service.ts` | Mention-to-manifestation pipeline. Readiness lens integration site (assessment slot). Substrate now accumulates via natural mention detection — the pipeline is live. |
+| **Natural mention detection** | `apps/qino-world-backend/src/routes/chat-stream.ts`, `src/services/mention-extraction.ts`, `src/utils/entity-similarity.ts` | Two-layer detection: Layer 1 (Jaro-Winkler similarity against known mention names) catches exact and near-exact references at zero inference cost. Layer 2 (extraction piggyback) detects referenced mentions during the same LLM call that extracts new ones. This is the live entry point for substrate accumulation — users naturally reference mentions in conversation, and the system detects it. Built 2026-02-16 (7ac0714). |
 | **World prompt builder** | `apps/qino-world-backend/src/services/world-prompt-builder.ts` | Builds dialogue context from area + nearby figures. Future site for narrator slot integration — figures present should shape narrative voice. |
 | **Iteration 23 (inline crossing)** | `implementations/qino-world/content/23-inline-crossing-transformation.md` | Next World iteration. Wires transformation into inline crossing path. Uses `voiceFigureWithData` for crossing voicing. |
 
@@ -138,20 +139,20 @@ Dialogue quality became measurable through the simulation pipeline. The prompt a
 
 | What | Where | Why It Matters Here |
 |------|-------|---------------------|
-| **Dialogue quality workspace** | `implementations/dialogue-quality/story.md` | Cross-cutting node: prompt architecture review, model comparison findings, relationship to simulation. Tracks the "why" and "what we observed" — World iterations track "what changed." |
-| **World iteration 24** | `implementations/qino-world/content/24-dialogue-voice-quality.md` | Prompt rework: replaced keyword-matching pipeline with direct personality injection, conversation-mode framing, relaxed formatting rules. |
-| **MODELS.DIALOGUE tier** | `packages/ai/` (`@qinolabs/ai`) | DeepSeek V3.2 as dialogue model. Used by `dialogue-service.ts` (conversation) and `awakening-service.ts` (first speech). 75%+ cheaper than Haiku, validated character differentiation. |
-| **Model comparison data** | `implementations/dialogue-quality/story.md`, "Model Comparison Findings" section | 4-model x 3-deck x 6-turn matrix (216 LLM calls). All candidates produced viable dialogue. DeepSeek selected for best quality-per-dollar. |
+| **Dialogue quality navigator** | `navigators/dialogue-quality.md` | Owns the cross-cutting quality surface: prompt architecture, model comparison findings, model tier table, mention extraction quality. This navigator references it rather than duplicating. |
+| **World iteration 24** | `implementations/qino-world/content/24-dialogue-voice-quality.md` | Prompt rework: replaced keyword-matching pipeline with direct personality injection, conversation-mode framing, relaxed formatting rules. Also documents natural mention detection (Layer 1 + Layer 2) and the dead code discovery that motivated it. |
+| **AI client** | `packages/ai/` (`@qinolabs/ai`) | Centralized model tier architecture. The current 4-tier system (CREATIVE, ANALYTICAL, DIALOGUE, STRUCTURED) was consolidated on 2026-02-16 from a previous 6-tier layout. Lens-lab and emergence-lab assessment services migrated from hardcoded raw-fetch to `@qinolabs/ai` with ANALYTICAL tier (GPT-4.1 Mini, $0.40/$1.60). |
+
+Model tier architecture is tracked in the dialogue-quality navigator (`navigators/dialogue-quality.md` SS AI Client Model Tiers). The current 4-tier system (CREATIVE, ANALYTICAL, DIALOGUE, STRUCTURED) was consolidated on 2026-02-16 — FAST, CHAT, and STRUCTURED_PREMIUM removed (zero consumers after migration). The key outcome for this territory: assessment services across lens-lab and emergence-lab now run through `@qinolabs/ai` with the ANALYTICAL tier at 75-97% cost reduction versus the previous hardcoded Sonnet 4 calls.
 
 **What the prompt rework proved**: Rich character data (origin, personality, visual presence from starter decks) flows directly to the LLM. The LLM infers voice from character — no keyword-matching intermediary. The baseline is model-agnostic: all 4 tested models produced character-differentiated dialogue with deck-specific tone.
-
-**What the model economics changed**: DeepSeek V3.2 at $0.25/$0.38 per M tokens makes high-volume simulation routine. A 13-deck x 4-profile sweep costs what a 3-deck x 1-profile sweep used to cost with Haiku. The three-tier model architecture (FAST for cheap tasks, DIALOGUE for character voice, CHAT for complex multi-party) gives each use case a clear cost-quality tradeoff.
 
 **What this unlocks across the territory**:
 - **Simulation as regression tool**: Any prompt change or model swap validated against the 13-deck baseline in minutes. The `dialogueModel` override threads through the entire pipeline.
 - **Walk prompt architecture**: The "pass rich data, let LLM infer" pattern directly informs Walk's narrator/companion voice design. Walk's indirect consumption (figures color narrator awareness) is easier when prompts don't prescribe voice buckets.
 - **Crossing dialogue quality**: World 23 (inline crossing) inherits improved character voice. Witness reactions gain texture when the arriving figure speaks distinctively.
 - **Deck quality as observable property**: Different decks produce measurably different substrate density, mention extraction rates, and readiness profiles. The threshold deck's frontier-station is the reference; other decks compare against it.
+- **Assessment cost reduction**: Lens-lab and emergence-lab assessment services running through ANALYTICAL (GPT-4.1 Mini) instead of hardcoded Sonnet 4 makes calibration experiments cheaper to run at scale.
 
 ---
 
@@ -177,8 +178,8 @@ For entering this territory fresh:
 
 ### Lens Intelligence Beyond Crossing
 
-- Does a metadata-only API (`getLensContext`) still make sense now that the runtime surface was removed? Or should modalities simply use `selectLens` knowledge embedded in their own prompt-building code?
-- What's the first modality slot beyond crossing that needs lens awareness? Narrator (session voice) vs theme (scenario atmosphere) vs companion (walk dialogue)?
+- Does a metadata-only API (`getLensContext`) still make sense now that the runtime surface was removed? Or should modalities simply use `selectLens` knowledge embedded in their own prompt-building code? *(2026-02-16: natural mention detection provides substrate accumulation without requiring a metadata API — the existing pipeline may be sufficient for the assessment slot without new infrastructure.)*
+- What's the first modality slot beyond crossing that needs lens awareness? Narrator (session voice) vs theme (scenario atmosphere) vs companion (walk dialogue)? *(2026-02-16: assessment slot moved up — natural mention detection means substrate now accumulates during normal conversation, making lens assessment of post-dialogue state a live possibility rather than a theoretical one.)*
 - Should lens intelligence be delivered through the existing `LensContext` type (already has `slotType`, `figureComposite`, `modalityProfile` fields) rather than a new RPC method?
 
 ### Modality Consumption Patterns
@@ -302,3 +303,31 @@ For entering this territory fresh:
 - Walk prompt architecture — "pass rich data, let LLM infer" pattern directly applicable to narrator/companion voice
 - DeepSeek V4 evaluation — proposal annotation tracks this; one simulation run produces direct comparison
 - Mention and awakening system assessment — do simulation profiles produce enough substrate for readiness assessment at different engagement styles?
+
+### 2026-02-16 — Session 5: Natural Mention Detection + Model Tier Consolidation
+
+**What happened**: Built the natural mention detection pipeline (Layer 1 Jaro-Winkler + Layer 2 extraction piggyback) that provides the live entry point for substrate accumulation. Consolidated the model tier architecture from 6 tiers to 4, migrating lens-lab and emergence-lab assessment services from hardcoded raw-fetch Sonnet 4 to `@qinolabs/ai` with the new ANALYTICAL tier. Switched live dialogue from Claude Sonnet 4.5 to DeepSeek V3.2.
+
+**Key moves**:
+- Natural mention detection: two-layer design where Layer 1 (Jaro-Winkler similarity) catches exact/near-exact references at zero inference cost, and Layer 2 (extraction piggyback) detects referenced mentions during the same LLM call that extracts new ones — zero additional inference. Resolves the dead code discovery from iteration 24: the substrate accumulation pipeline (`trackRelationalInquiry`, `mentionSubstrate`, `relationalInquiries`, `checkAwakeningAvailability`) now has a live entry point through natural conversation.
+- Model tier consolidation: FAST, CHAT, STRUCTURED_PREMIUM removed (zero consumers after migration). ANALYTICAL added (GPT-4.1 Mini, $0.40/$1.60) for evaluation and assessment workloads. Lens-lab and emergence-lab assessment services migrated from hardcoded `fetch()` with raw Sonnet 4 model strings to `@qinolabs/ai`'s `generateStructured` with `MODELS.ANALYTICAL` — 75-97% cost reduction.
+- Live dialogue model switch: `chat-stream.ts` and `three-way-dialogue-service.ts` moved from Claude Sonnet 4.5 to DeepSeek V3.2 (MODELS.DIALOGUE), extending the simulation-validated model to production traffic.
+- Integration tests: 12 tests for mention extraction with real AI inference, validating the Layer 1 + Layer 2 pipeline end-to-end.
+
+**What was produced**:
+- Natural mention detection implementation (7ac0714): `entity-similarity.ts` (Jaro-Winkler), updated `mention-extraction.ts` (Layer 2 piggyback), updated `chat-stream.ts` and `simulation-service.ts` (detection integration)
+- Mention detection unit tests (c54280a): 177 entity similarity tests, expanded mention extraction tests
+- Integration tests (a2e8bd9): 12 tests with real AI inference validating the full extraction + detection pipeline
+- Model tier consolidation (13a1804): 4-tier `MODELS` constant, 20 files updated across 7 apps and 2 infra packages
+- Live dialogue switch (1dbb98a): production chat on DeepSeek V3.2
+
+**What shifted**: The substrate accumulation pipeline went from dead code to live infrastructure. The mention-to-substrate-to-awakening chain now has its input: users reference mentions naturally in conversation, the system detects it, substrate accumulates, and the awakening check can eventually fire. This is the precondition for testing whether lens assessments diverge when different user profiles produce different substrate — the Phase 2 hypothesis from annotation 001.
+
+The model tier cleanup also means the AI package is now a clean 4-tier system where each tier has a clear purpose and every callsite uses it. Assessment workloads (the Lab's read path) are dramatically cheaper, making calibration experiments more routine.
+
+**What remains alive**:
+- Simulation validation of the full mention-to-substrate-to-awakening chain: run a longer simulation (15+ turns) where mention references accumulate and test whether the awakening check fires
+- Profile substrate divergence: do Explorer and Speedrunner produce meaningfully different substrate patterns over longer sessions? The 6-turn simulation showed 2x differential in raw mention counts — does that translate to different lens readings when substrate accumulates?
+- World 23 (inline crossing transformation) — still the next World iteration
+- Lens Lab 23 (relational lenses + crossing simulation) — can now pull post-dialogue substrate that includes mention references
+- Assessment slot viability: with substrate accumulating naturally, assess whether the existing `getLenses` + prompt-building pattern is sufficient for lens-informed readiness assessment, or whether a dedicated metadata API is still needed
