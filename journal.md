@@ -40,3 +40,54 @@ Root cause: the picker scans `.jsonl` files in `~/.claude/projects/` sorted by m
 10+ open issues on anthropics/claude-code (#22205, #24435, #24729, #25032, #25685 and others), earliest from Jan 31. Zero official responses from Anthropic. Compiled Mach-O binary on macOS ARM — community `sed` patch for `cli.js` doesn't apply.
 
 Workaround: `claude --resume <session-id>`. Session IDs findable via `~/.claude/history.jsonl`.
+
+
+## created: Portfolio 2024 — Static Rebuild
+
+<!-- context: node/portfolio-2024 -->
+
+created: Portfolio 2024 — Static Rebuild
+→ [portfolio-2024](nodes/portfolio-2024/)
+
+
+## created: Strapi Content Model Analysis
+
+<!-- context: node/portfolio-strapi-analysis -->
+
+created: Strapi Content Model Analysis
+→ [portfolio-strapi-analysis](nodes/portfolio-strapi-analysis/)
+
+
+## created: Gatsby Frontend Architecture Analysis
+
+<!-- context: node/portfolio-gatsby-analysis -->
+
+created: Gatsby Frontend Architecture Analysis
+→ [portfolio-gatsby-analysis](nodes/portfolio-gatsby-analysis/)
+
+
+## created: Static App Migration Strategy
+
+<!-- context: node/portfolio-migration-strategy -->
+
+created: Static App Migration Strategy
+→ [portfolio-migration-strategy](nodes/portfolio-migration-strategy/)
+
+
+<!-- context: session/2026-02-16 -->
+
+**Portfolio 2024 navigator created — static rebuild of Gatsby + Strapi portfolio.**
+
+Cloned both original repos (`portfolio-colocate-strapi`, `portfolio-gatsby`) into workspace. Deep-dived both architectures in parallel:
+
+- **Strapi**: 4 collection types, 1 single type, 7 shared components, zero custom logic. All controllers/services/routes are default CRUD. PostgreSQL (prod) + S3 media. Key finding: the CMS is pure plumbing with no business logic — entirely replaceable.
+- **Gatsby**: 4 pages, ~30 components, D3 Voronoi visualization (most complex piece), Tailwind 3 + SCSS dark mode, Jotai state with URL hash sync, custom GraphQL field extensions for undraw SVGs and area color mixing.
+
+**Bold architectural decision**: No CMS, no backend. Content becomes TypeScript data modules, images move to R2, app deploys as a single static TanStack Start frontend using `template-frontend-static`. Monthly cost: $0.
+
+Created implementation directory at `qinolabs-repo/implementations/portfolio-2024/` with three deep-dive indexes:
+→ [01-strapi-architecture-index](../qinolabs-repo/implementations/portfolio-2024/content/01-strapi-architecture-index.md)
+→ [02-gatsby-architecture-index](../qinolabs-repo/implementations/portfolio-2024/content/02-gatsby-architecture-index.md)
+→ [03-cloudflare-migration-strategy](../qinolabs-repo/implementations/portfolio-2024/content/03-cloudflare-migration-strategy.md)
+
+Graph nodes: `portfolio-2024` (navigator), `portfolio-strapi-analysis`, `portfolio-gatsby-analysis`, `portfolio-migration-strategy` (findings).

@@ -1,0 +1,3 @@
+Complete extraction of the Strapi 4.15.4 content model: 4 collection types (Area, Project, Tag, Organization), 1 single type (Home), 7 shared components. All controllers/services/routes are default — zero custom business logic. The entire API surface is standard CRUD, meaning the backend can be fully replaced by TypeScript data modules.
+
+Key discovery: the content model is clean and relational but simple. Projects reference Areas (many-to-many), Tags (many-to-many), and Organizations (many-to-one). Home nests Profile and Contact components. Color picker stores plain hex strings. RichText fields contain Markdown with embedded S3 media references that need URL rewriting.

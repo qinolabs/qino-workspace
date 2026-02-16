@@ -1,0 +1,3 @@
+Pixel-perfect reproduction map of the Gatsby 5 frontend. 4 pages, ~30 components organized by feature (home, projects, project detail, viz/Voronoi, blob). Design system: Montserrat/Mulish typography, teal highlight color with CSS variable dark mode, 6 responsive breakpoints.
+
+The crown jewel is the D3 Voronoi visualization — a full-screen SVG diagram using d3-delaunay with clip-path cells, jittered grid positioning, hover interactions (scale + desaturate), area highlighting (grayscale overlay), and annotation labels. This is the most complex piece to port. State management uses Jotai atoms with URL hash sync via jotai-location. Custom gatsby-node.ts extensions fetch undraw SVGs and mix area colors at build time.

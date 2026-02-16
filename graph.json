@@ -8,6 +8,13 @@
       "title": "Emergence Experiments",
       "type": "navigator",
       "status": "active"
+    },
+    {
+      "id": "world-temporal-design",
+      "dir": "world-temporal-design",
+      "title": "World Temporal Design",
+      "type": "navigator",
+      "status": "active"
     }
   ],
   "edges": [
@@ -40,6 +47,60 @@
       "target": "emergence-experiments",
       "type": "references",
       "context": "sibling navigator — emergence maps what emerges; this maps how sensitivity reaches the organs"
+    },
+    {
+      "source": "world-temporal-design",
+      "target": "qino-world",
+      "type": "references",
+      "context": "temporal texture, awakening surfaces, and scenario progression are qino-world design spaces"
+    },
+    {
+      "source": "world-temporal-design",
+      "target": "lens-ecosystem",
+      "type": "references",
+      "context": "sibling navigator — lens-ecosystem maps sensitivity routing; this maps how worlds live in time"
+    },
+    {
+      "source": "world-temporal-design",
+      "target": "emergence-experiments",
+      "type": "references",
+      "context": "awakening mechanics overlap — emergence maps readiness assessment; this maps the temporal staging surface"
+    },
+    {
+      "source": "portfolio-strapi-analysis",
+      "target": "portfolio-2024",
+      "type": "references",
+      "context": "Content model extraction feeds the TypeScript data module design"
+    },
+    {
+      "source": "portfolio-gatsby-analysis",
+      "target": "portfolio-2024",
+      "type": "references",
+      "context": "Component map and design tokens guide the frontend reproduction"
+    },
+    {
+      "source": "portfolio-gatsby-analysis",
+      "target": "portfolio-strapi-analysis",
+      "type": "references",
+      "context": "Gatsby consumes Strapi data via gatsby-source-strapi — data model shapes component props"
+    },
+    {
+      "source": "portfolio-migration-strategy",
+      "target": "portfolio-2024",
+      "type": "references",
+      "context": "Implementation roadmap for the static rebuild"
+    },
+    {
+      "source": "portfolio-migration-strategy",
+      "target": "portfolio-strapi-analysis",
+      "type": "sparked-by",
+      "context": "Discovering zero custom Strapi logic confirmed the CMS is unnecessary"
+    },
+    {
+      "source": "portfolio-migration-strategy",
+      "target": "portfolio-gatsby-analysis",
+      "type": "sparked-by",
+      "context": "Understanding the full component tree defines the migration scope"
     }
   ]
 }

@@ -1,0 +1,3 @@
+The bold architectural decision: no CMS, no backend, no database. Content as TypeScript data modules, images in R2, deployed as a single static TanStack Start app on Cloudflare Workers using template-frontend-static.
+
+Five migration phases: (1) data extraction and scaffold, (2) home page, (3) projects pages, (4) Voronoi visualization port, (5) animation and responsive polish. The strategy eliminates PostgreSQL, S3, REST API, admin panel, and the entire Strapi deployment — replacing it with typed imports and a single `wrangler deploy`. Monthly cost drops to $0 on Workers free tier.
