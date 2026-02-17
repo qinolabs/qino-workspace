@@ -53,6 +53,7 @@ cd qino-claude && cat CLAUDE.md
 | qino-frame | 3003 | 4003 | Design tool |
 | qino-drops | 3001 | 4001 | Procedural idle canvas — figures emit drops onto a multi-track visualization |
 | qino-chronicles | 3006 | 4006 | Story/chronicle system |
+| qino-label | 3015 | 4015 | Phone-based calibration labeling |
 
 ## App Concepts
 
