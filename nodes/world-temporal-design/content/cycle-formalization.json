@@ -1,0 +1,46 @@
+{
+  "id": "cycle-formalization",
+  "title": "Cycle Formalization — Divergent Data Model Exploration",
+  "description": "Multiple parallel passes through the infrastructure trace, each collecting residue through a different lens. Residue surfaces concrete data model prototypes and architectural structures.",
+  "source": "infrastructure-trace.md",
+  "method": "divergent-residue",
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Five parallel passes, each reading the full infrastructure trace through a different lens. Each pass produces typed residue — concrete prototypes, not abstract descriptions.",
+      "passes": [
+        {
+          "id": "authored-layer",
+          "lens": "The Authored Layer",
+          "question": "What does the deck designer write? What types, structures, and content surfaces are needed for cycle authoring?",
+          "residue-type": "TypeScript type definitions, example deck fragments, authoring patterns"
+        },
+        {
+          "id": "storage-layer",
+          "lens": "The Storage Layer",
+          "question": "What tables, columns, and JSON shapes need to exist in the database? How does cycle data get seeded and persisted?",
+          "residue-type": "Drizzle schema fragments, migration sketches, JSON shape examples"
+        },
+        {
+          "id": "computation-layer",
+          "lens": "The Computation Layer",
+          "question": "How does cycle phase get computed at runtime? What service functions exist? What's the API between storage and consumption?",
+          "residue-type": "Function signatures, computation algorithms, service interface sketches"
+        },
+        {
+          "id": "prompt-layer",
+          "lens": "The Prompt Layer",
+          "question": "How does temporal context flow into dialogue and crossing prompts? What does the LLM see? How is manifestation resonance expressed in natural language?",
+          "residue-type": "Prompt fragments, template structures, example dialogue contexts"
+        },
+        {
+          "id": "front-of-house",
+          "lens": "The Front-of-House Layer",
+          "question": "What does the frontend need from the backend? What API shapes, polling patterns, and display data are required?",
+          "residue-type": "tRPC response shapes, polling strategies, UI state models"
+        }
+      ]
+    }
+  ],
+  "convergence": "After round 1, compare residue across passes. Identify where types align, where they diverge, where one pass's output is another's input. Use findings to refine the question or adjust the residue surface for round 2."
+}
