@@ -91,3 +91,49 @@ Created implementation directory at `qinolabs-repo/implementations/portfolio-202
 → [03-cloudflare-migration-strategy](../qinolabs-repo/implementations/portfolio-2024/content/03-cloudflare-migration-strategy.md)
 
 Graph nodes: `portfolio-2024` (navigator), `portfolio-strapi-analysis`, `portfolio-gatsby-analysis`, `portfolio-migration-strategy` (findings).
+
+
+<!-- context: session/2026-02-17 -->
+
+**Composted 5 completed navigators/findings.**
+
+- `portfolio-2024` (navigator) → composted
+- `portfolio-strapi-analysis` (finding) → composted
+- `portfolio-gatsby-analysis` (finding) → composted
+- `portfolio-migration-strategy` (finding) → composted
+- `world-temporal-design` (navigator) → composted
+
+Portfolio rebuild analysis served its purpose — architecture indexes live in `qinolabs-repo/implementations/portfolio-2024/`. World temporal design navigator complete.
+
+
+<!-- context: session/2026-02-17 -->
+
+## World Iteration 26: Cycle-Aware Dialogue — Implementation + Validation
+
+### Changes shipped
+
+Three files modified in qino-world-backend to close the temporal gap between authored cycle data and live dialogue:
+
+- `dialogue-service.ts` — `phaseContext` field + `=== THE MOMENT ===` prompt section
+- `simulation-service.ts` — `cyclePhase` config threading with per-area overlay resolution
+- `index.ts` — `computePhase()` integration in `simulateSession()` RPC
+
+### Simulation results (cycle-aware, 4 decks)
+
+| Deck | Fertility | Mentions | Inquiries | Awakenings |
+|------|-----------|----------|-----------|------------|
+| threshold | 0.85 | 2 | 4 | Yes |
+| tide-pool | 0.85 | 2 | 4 | Yes |
+| comet-riders | 0.87 | 1 | 1 | Yes |
+| nomad-fleet | 0.87 | 9 | 18 | Yes |
+
+### vs Iteration 25 baseline
+
+- threshold fertility: 0.80 → 0.85 (+0.05)
+- All decks still produce awakenings — cycle awareness is additive
+- nomad-fleet remains densest, comet-riders thinnest (thematic, not a bug)
+- Baseline was under-documented — recommendation: capture full 4-lens profiles going forward
+
+### Chain validated
+
+Authored types (L0-L5) → `computePhase()` → `=== THE MOMENT ===` prompt → simulation loop. The cycle formalization exploration's runtime path is now live. Assessment adapter remains cycle-blind (separate concern).
