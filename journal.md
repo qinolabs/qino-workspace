@@ -137,3 +137,19 @@ Three files modified in qino-world-backend to close the temporal gap between aut
 ### Chain validated
 
 Authored types (L0-L5) → `computePhase()` → `=== THE MOMENT ===` prompt → simulation loop. The cycle formalization exploration's runtime path is now live. Assessment adapter remains cycle-blind (separate concern).
+
+
+## created: MCP Elicitation Modes — Form & URL
+
+<!-- context: node/mcp-elicitation-modes -->
+
+created: MCP Elicitation Modes — Form & URL
+→ [mcp-elicitation-modes](nodes/mcp-elicitation-modes/)
+
+
+## created: Structured Data Nodes — Protocol Gap
+
+<!-- context: node/structured-data-nodes -->
+
+created: Structured Data Nodes — Protocol Gap
+→ [structured-data-nodes](nodes/structured-data-nodes/)

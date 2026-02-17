@@ -1,0 +1,9 @@
+The qino protocol's building blocks are all prose-shaped: story.md, content/*.md, annotations/*.md, journal.md. There is no first-class concept for a node that holds structured data — tables, schemas, time series, scored results — where the data has meaning worth preserving in the graph (edges, annotations, visibility in qino-lab) but isn't narrative.
+
+The gap surfaced while planning dialogue quality rubric scoring. Rubric scores are inherently tabular: six dimensions × N turns × M figures, comparable across runs, diffable across models. They need to live somewhere durable, connected to what produced them (decks, simulations, prompt versions). But story.md isn't the right container for a JSON table, and a D1 database makes the data invisible to the protocol.
+
+Other cases that hit the same gap: simulation run results, model comparison matrices, assessment profiles (lens signals across scenarios), starter deck metadata. All are meaningful structured data with relationships — not ephemeral API responses, not narrative prose.
+
+A structured data node might carry: node.json (identity + schema reference), story.md (still the impulse — what this data means), a data/ directory (schema-validated JSON/CSV), and annotations/ as usual. The schema makes the data renderable — qino-lab could display tables, diffs, charts. Tools like write_data or update_data could append without replacing narrative content.
+
+The deeper question: does the protocol want to hold quantitative knowledge alongside qualitative knowledge? Or should structured data stay in databases, with only the *findings* (narrative interpretations) entering the graph? The hybrid answer — raw data in files, findings as annotations — might be the right seam.

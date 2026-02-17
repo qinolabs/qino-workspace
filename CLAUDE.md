@@ -93,7 +93,9 @@ Living orientation documents for cross-cutting possibility spaces being actively
 
 **Not plans** (they don't prescribe tasks). **Not arcs** (arcs trace inquiry; navigators map terrain for building).
 
-**Current active navigators**: Check the root graph for nodes with `type: "navigator"`.
+**Lifecycle**: Active navigators have `status: "active"`. When a navigator's territory is fully explored or its work completes, set `status: "composted"` — this hides it from the landing page while preserving it in the graph.
+
+**Current active navigators**: Check the root graph for nodes with `type: "navigator"` and `status: "active"`.
 
 ## Implementation Notes & Iterations
 

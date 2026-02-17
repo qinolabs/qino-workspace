@@ -101,6 +101,24 @@
       "target": "portfolio-gatsby-analysis",
       "type": "sparked-by",
       "context": "Understanding the full component tree defines the migration scope"
+    },
+    {
+      "source": "mcp-elicitation-modes",
+      "target": "lens-ecosystem",
+      "type": "informs",
+      "context": "Elicitation could reduce friction in lens calibration workflows — structured form decisions instead of conversational back-and-forth"
+    },
+    {
+      "source": "structured-data-nodes",
+      "target": "lens-ecosystem",
+      "type": "sparked-by",
+      "context": "Emerged from planning dialogue quality rubric scoring — simulation results need a home that's neither ephemeral API nor opaque database"
+    },
+    {
+      "source": "structured-data-nodes",
+      "target": "emergence-experiments",
+      "type": "informs",
+      "context": "Experiment results are a primary instance of structured data that wants protocol visibility"
     }
   ]
 }
