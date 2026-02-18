@@ -15,7 +15,8 @@
     "concepts": { "path": "qino-concepts" },
     "implementation": { "path": "qinolabs-repo" },
     "research": { "path": "qino-research" },
-    "tooling": { "path": "qino-claude" }
+    "tooling": { "path": "qino-claude" },
+    "evaluation": { "path": "qino-evaluation" }
   },
 
   "protocol": "qino",

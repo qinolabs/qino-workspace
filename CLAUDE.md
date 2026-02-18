@@ -12,7 +12,8 @@ This is a multi-repo workspace. Navigate to the appropriate repo based on the ta
 | `qino-claude/` | Claude Code tools and plugins | Creating/updating Claude commands, agents, plugins |
 | `qino-concepts/` | **Main concepts repository** | Concept exploration, app visions, ecosystem design |
 | `qino-research/` | Research and documentation | Research tasks, technical writing |
-| `qino-lingo/` | Conversation archives | Reference only |
+| `qino-lingo/` | Model training ecosystem | Conversation labeling, calibration, fine-tuning |
+| `qino-evaluation/` | Evaluation data workspace | Rubric scores, simulation results, model comparisons |
 | `qinolabs-legal/` | Legal documents | Legal/compliance work |
 | `external-apps/` | External client apps | Standalone projects outside qinolabs ecosystem |
 | `external-concepts/` | External project concepts | Design docs for external client work |
@@ -41,6 +42,11 @@ cd qinolabs-repo/implementations/docs && cat README.md
 **Claude tooling** (commands, agents, plugins):
 ```
 cd qino-claude && cat CLAUDE.md
+```
+
+**Evaluation data** (rubric scores, simulation results):
+```
+cd qino-evaluation && cat graph.json
 ```
 
 ## Key Apps in qinolabs-repo
