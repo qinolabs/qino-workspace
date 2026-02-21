@@ -83,11 +83,9 @@ qino-drops is a **real-time simulation** where the user's personal figures (abst
 
 - **Frontend apps**: `qinolabs-repo/apps/{app-name}/`
 - **Backend workers**: `qinolabs-repo/apps/{app-name}-backend/`
-- **UI Core**: `qinolabs-repo/packages/ui-core/` — Basic universal components
-- **Shared UI** (deprecated): `qinolabs-repo/packages/ui/` — Being phased out in favor of ui-core
+- **UI Core**: `qinolabs-repo/packages/ui-core/` — Generic UI primitives (Base UI-based)
+- **UI Apps**: `qinolabs-repo/packages/ui-apps/` — Domain-specific ecosystem components
 - **Shared contracts**: `qinolabs-repo/packages/contracts/`
-
-**Note**: The shared UI library (`packages/ui/`) is being phased out. Use `packages/ui-core/` for basic universal components. When working on UI, prefer ui-core for new components and migrate existing ui imports when touching that code.
 
 ## Navigators
 

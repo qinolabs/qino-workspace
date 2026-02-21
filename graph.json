@@ -119,6 +119,36 @@
       "target": "emergence-experiments",
       "type": "informs",
       "context": "Experiment results are a primary instance of structured data that wants protocol visibility"
+    },
+    {
+      "source": "world-emergence-architecture",
+      "target": "emergence-experiments",
+      "type": "references",
+      "context": "sibling navigator — emergence-experiments maps readiness assessment through lenses; this maps how the substrate system becomes a world-level emergence engine"
+    },
+    {
+      "source": "world-emergence-architecture",
+      "target": "world-temporal-design",
+      "type": "sparked-by",
+      "context": "picks up where world-temporal-design left off — temporal staging is one piece; this navigator holds the full emergence architecture"
+    },
+    {
+      "source": "world-emergence-architecture",
+      "target": "qino-world",
+      "type": "references",
+      "context": "primary modality where emergence plays out — substrate system, dialogue, awakening all live here"
+    },
+    {
+      "source": "evaluation-loop",
+      "target": "emergence-experiments",
+      "type": "references",
+      "context": "sibling navigator — emergence-experiments maps readiness assessment; this maps the loop where simulation results improve the system that produces them"
+    },
+    {
+      "source": "evaluation-loop",
+      "target": "lens-ecosystem",
+      "type": "references",
+      "context": "lens-ecosystem maps sensitivity routing; evaluation loop maps how simulation infrastructure feeds back into prompt quality"
     }
   ]
 }
