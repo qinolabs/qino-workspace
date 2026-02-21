@@ -152,8 +152,8 @@ The substrate system evolving from session-local observation into a world-level 
 
 Three paths through this territory that could each become an iteration:
 
-### Track A: Substrate evolution
-Lift substrate from session-scope to scenario-scope. Build the feedback loop (substrate → context → LLM). This is foundational — everything else builds on it.
+### Track A: Substrate evolution ✓ (iteration 28)
+Substrate lifted from session-scope to scenario-scope. `mentionSubstrate` keyed on `scenarioId` — accumulates across all sessions in a scenario. Feedback loop partially closed: worldSeeds (latent manifestations, areas, relational maps) threaded through simulation and dialogue pipelines. Substrate-to-seed responsiveness (accumulated attention shaping future context) deferred to emergence types work.
 
 ### Track B: Awakening ceremony ✓ (iteration 27)
 Cinematic ceremony rewrite using crossing components (CrossfadeBackdrop, TypewriterText, TextBackground). Portrait generation service metabolizes substrate into coherent in-world description with origin classification (ancient/new-arrival/liminal) and area tracing. Inline notification in chat ("Something stirs...") when substrate crosses threshold. Proposal 003 resolved.
@@ -166,7 +166,7 @@ The world processes substrate autonomously — manifestations metabolize accumul
 
 **Dependencies:**
 - ~~Track B can proceed on current substrate~~ → complete
-- Track A must precede area/world awakening AND world autonomy
+- ~~Track A must precede area/world awakening AND world autonomy~~ → complete, Track D unblocked
 - ~~Track C can proceed in parallel~~ → complete, visibility tiers now also constrain Track D
 - Track D depends on Track A (world process needs persistent substrate to metabolize)
 
@@ -206,3 +206,18 @@ The world processes substrate autonomously — manifestations metabolize accumul
 - Annotated world-emergence-architecture with world-inner-life connection (extends Gap 2)
 - Annotated dialogue-quality proposal 002 (natural mention detection) with drag gesture removal direction — communication over mechanical action strengthens LLM-native detection approach
 - Proposal 005 (scenario knowledge) gains relevance: manifestation hints become one expression of world inner life
+
+### 2026-02-22 — Track A complete (iteration 28)
+
+**Substrate scope lift shipped:**
+- `mentionSubstrate` now keyed on `scenarioId` — cross-session accumulation within a scenario works
+- Migration simplified to `ALTER TABLE ADD COLUMN` due to D1 PRAGMA limitation (D1 doesn't persist `PRAGMA foreign_keys=OFF` across statement breakpoints)
+- `sessionId` stays NOT NULL in DB (cosmetic mismatch with Drizzle schema) — threaded through all insert paths
+- Substrate service, chat-stream, simulation pipeline, substrate router, frontend queries all rekeyed to scenarioId
+
+**Track D unblocked:** With substrate persisting at scenario level, world autonomy (ambient chatter, manifestation emotional state) has the foundation it needs. The world's nervous system is now scenario-scoped.
+
+**What remains in this territory:**
+- Gap 2 (feedback loop) partially closed — worldSeeds flow into dialogue, but accumulated attention doesn't yet shape future seeds
+- Gap 3 (emergence types) — area and world awakening need their own accumulation logic on top of the now-scenario-scoped substrate
+- Track D (world autonomy) — unblocked but not started

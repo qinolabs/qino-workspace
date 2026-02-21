@@ -34,3 +34,17 @@ The core insight: an agent can use the qino-protocol graph as its persistent wor
 - When should the agent create parallel branches vs iterate sequentially?
 - How does the qino-label write-back surface integrate — annotations on eval nodes? structured judgments in data/?
 - What does convergence look like? When does the agent recommend "promote this to production"?
+
+## Session Log
+
+### 2026-02-22 — Iteration 01 complete (prompt override infrastructure)
+
+**Shipped in qino-world iteration 28:**
+- `promptOverrides` type defined: preamble, prohibitions, affirmations, rules, knowledgeBoundaries
+- `DialogueContext` accepts `promptOverrides` — null-coalesces at each prompt section boundary
+- Template placeholder resolution (`{{name}}`, `{{area}}`) for override text
+- `SimulationConfig` carries `promptOverrides` — threaded from Lens Lab through RPC to dialogue pipeline
+- `SimulateSessionInput` Zod schema extended with optional `promptOverrides`
+- 11 automated tests for prompt override behavior
+
+**Iteration 02 (agent prompt evolution) now unblocked:** An agent can write prompt variants as data in `data/config.json`, pass them through `promptOverrides`, and measure results — without touching production code.
